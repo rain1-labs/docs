@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "Help Center",
+  "name": "Rain Help Center",
   "theme": "mint",
   "colors": {
     "primary": "#16A34A",
@@ -15,16 +15,8 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Rain Help Center",
         "groups": [
-          {
-            "group": "Introduction",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
-          },
           {
             "group": "Help Center",
             "pages": [
@@ -38,7 +30,7 @@
               "Help-Center/FilingaDispute",
               "Help-Center/HowtoClaimYourRewards",
               "Help-Center/HowtoEndPredictionsinamarket",
-              "Help-Center/HowtoLinkYourYouTubeLiveStrea",
+              "Help-Center/HowtoLinkYourYouTubeLiveStream",
               "Help-Center/Howtowithdrawyourfunds",
               "Help-Center/Inflationdeflationmechanism",
               "Help-Center/MarketTypes",
