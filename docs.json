@@ -18,6 +18,14 @@
         "tab": "Guides",
         "groups": [
           {
+            "group": "Introduction",
+            "pages": [
+              "index",
+              "quickstart",
+              "development"
+            ]
+          },
+          {
             "group": "Help Center",
             "pages": [
               "Help-Center/AbouttheRAINtoken",
