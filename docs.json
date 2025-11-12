@@ -18,7 +18,6 @@
         "tab": "Rain Help Center",
         "groups": [
           {
-            "group": "Getting Started",
             "pages": [
               "Help-Center/Settingupyouraccount",
               "Help-Center/Setupyourprofile",
@@ -29,7 +28,6 @@
             ]
           },
           {
-            "group": "Features",
             "pages": [
               "Help-Center/ReferralProgram",
               "Help-Center/RainsPointSystem",
@@ -43,10 +41,9 @@
             ]
           },
           {
-            "group": "Markets",
             "pages": [
               "Help-Center/Creatingamarket",
-              "Help-Center/HowtoLinkYourYouTubeLiveStrea",
+              "Help-Center/HowtoLinkYourYouTubeLiveStream",
               "Help-Center/TradingOptions",
               "Help-Center/HowtoEndPredictionsinamarket",
               "Help-Center/Closingamarket",
@@ -58,7 +55,6 @@
             ]
           },
           {
-            "group": "Token & Governance",
             "pages": [
               {
                 "page": "Help-Center/AbouttheRAINtoken",
