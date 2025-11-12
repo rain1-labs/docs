@@ -20,12 +20,17 @@
           {
             "group": "Help Center",
             "pages": [
-              "Help-Center/Settingupyouraccount",
-              "Help-Center/Setupyourprofile",
-              "Help-Center/Connectyourwallet",
-              "Help-Center/DepositFunds",
-              "Help-Center/Cross-chainsupport",
-              "Help-Center/MyProfile-Overview",
+              {
+                "group": "Setting up your account",
+                "pages": [
+                  "Help-Center/Settingupyouraccount",
+                  "Help-Center/Connectyourwallet",
+                  "Help-Center/DepositFunds",
+                  "Help-Center/Setupyourprofile",
+                  "Help-Center/Cross-chainsupport",
+                  "Help-Center/MyProfile-Overview"
+                ]
+              },
               "Help-Center/ReferralProgram",
               "Help-Center/RainsPointSystem",
               {
