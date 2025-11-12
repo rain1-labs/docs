@@ -20,38 +20,30 @@
           {
             "group": "Help Center",
             "pages": [
+              "Help-Center/AbouttheRAINtoken",
+              "Help-Center/Closingamarket",
+              "Help-Center/Connectyourwallet",
+              "Help-Center/Creatingamarket",
+              "Help-Center/Cross-chainsupport",
+              "Help-Center/DAOgovernance",
+              "Help-Center/DepositFunds",
+              "Help-Center/FilingaDispute",
+              "Help-Center/HowtoClaimYourRewards",
+              "Help-Center/HowtoEndPredictionsinamarket",
+              "Help-Center/HowtoLinkYourYouTubeLiveStream",
+              "Help-Center/Howtowithdrawyourfunds",
+              "Help-Center/Inflationdeflationmechanism",
+              "Help-Center/MarketTypes",
+              "Help-Center/MyProfile-Overview",
+              "Help-Center/PlatformFees",
+              "Help-Center/Privatemarkets",
+              "Help-Center/Publicmarkets",
+              "Help-Center/RainsPointSystem",
+              "Help-Center/ReferralProgram",
+              "Help-Center/Rewards",
               "Help-Center/Settingupyouraccount",
               "Help-Center/Setupyourprofile",
-              "Help-Center/Connectyourwallet",
-              "Help-Center/DepositFunds",
-              "Help-Center/Cross-chainsupport",
-              "Help-Center/MyProfile-Overview",
-              "Help-Center/ReferralProgram",
-              "Help-Center/RainsPointSystem",
-              {
-                "page": "Help-Center/MarketTypes",
-                "pages": [
-                  "Help-Center/Publicmarkets",
-                  "Help-Center/Privatemarkets"
-                ]
-              },
-              "Help-Center/Creatingamarket",
-              "Help-Center/HowtoLinkYourYouTubeLiveStream",
-              "Help-Center/TradingOptions",
-              "Help-Center/HowtoEndPredictionsinamarket",
-              "Help-Center/Closingamarket",
-              "Help-Center/HowtoClaimYourRewards",
-              "Help-Center/Rewards",
-              "Help-Center/FilingaDispute",
-              "Help-Center/PlatformFees",
-              "Help-Center/Howtowithdrawyourfunds",
-              {
-                "page": "Help-Center/AbouttheRAINtoken",
-                "pages": [
-                  "Help-Center/Inflationdeflationmechanism",
-                  "Help-Center/DAOgovernance"
-                ]
-              }
+              "Help-Center/TradingOptions"
             ]
           }
         ]
