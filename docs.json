@@ -31,8 +31,6 @@
                   "Help-Center/MyProfile-Overview"
                 ]
               },
-              "Help-Center/ReferralProgram",
-              "Help-Center/RainsPointSystem",
               {
                 "group": "Market types",
                 "pages": [
@@ -41,14 +39,28 @@
                   "Help-Center/Privatemarkets"
                 ]
               },
+              {
+                "group": "Participating in markets",
+                "pages": [
+                  "Help-Center/participatinginmarkets",
+                  "Help-Center/MarketPageOverview",
+                  "Help-Center/TradingOptions",
+                  "Help-Center/HowtoClaimYourRewards"
+                ]
+              },
               "Help-Center/Creatingamarket",
               "Help-Center/HowtoLinkYourYouTubeLiveStream",
-              "Help-Center/TradingOptions",
               "Help-Center/HowtoEndPredictionsinamarket",
               "Help-Center/Closingamarket",
-              "Help-Center/HowtoClaimYourRewards",
-              "Help-Center/Rewards",
               "Help-Center/FilingaDispute",
+              {
+                "group": "Rewards",
+                "pages": [
+                  "Help-Center/Rewards",
+                  "Help-Center/RainsPointSystem",
+                  "Help-Center/ReferralProgram"
+                ]
+              },
               "Help-Center/PlatformFees",
               "Help-Center/Howtowithdrawyourfunds",
               {
