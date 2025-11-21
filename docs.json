@@ -3,9 +3,9 @@
   "name": "Rain Help Center",
   "theme": "mint",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#212121",
+    "light": "#E5FE00",
+    "dark": "#212121"
   },
   "favicon": "/favicon.svg",
   "logo": {
