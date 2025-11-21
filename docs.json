@@ -4,7 +4,7 @@
   "theme": "mint",
   "colors": {
     "primary": "#212121",
-    "light": "#E5FE00",
+    "light": "#212121",
     "dark": "#212121"
   },
   "favicon": "/favicon.svg",
