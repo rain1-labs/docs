@@ -4,8 +4,8 @@
   "theme": "mint",
   "colors": {
     "primary": "#212121",
-    "light": "#212121",
-    "dark": "#E5FE00"
+    "light": "#E5FE00",
+    "dark": "#212121"
   },
   "favicon": "/favicon.svg",
   "logo": {
