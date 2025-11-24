@@ -2,6 +2,9 @@
   "$schema": "https://mintlify.com/docs.json",
   "name": "Rain Help Center",
   "theme": "mint",
+  "branding": {
+  "hideMintlifyBadge": true
+},
   "colors": {
     "primary": "#212121",
     "light": "#E5FE00",
