@@ -32,7 +32,6 @@
           {
             "group": "Help Center",
             "pages": [
-              "rain-help-center/help-center/what-are-altcoin-markets",
               {
                 "group": "Setting up your account",
                 "pages": [
@@ -50,7 +49,8 @@
                 "pages": [
                   "Help-Center/MarketTypes",
                   "Help-Center/Publicmarkets",
-                  "Help-Center/Privatemarkets"
+                  "Help-Center/Privatemarkets",
+                  "rain-help-center/help-center/what-are-altcoin-markets"
                 ]
               },
               {
