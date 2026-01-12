@@ -32,6 +32,7 @@
           {
             "group": "Help Center",
             "pages": [
+              "rain-help-center/help-center/what-are-altcoin-markets",
               {
                 "group": "Setting up your account",
                 "pages": [
@@ -45,6 +46,7 @@
               },
               {
                 "group": "Market types",
+                "expanded": true,
                 "pages": [
                   "Help-Center/MarketTypes",
                   "Help-Center/Publicmarkets",
@@ -53,6 +55,7 @@
               },
               {
                 "group": "Participating in markets",
+                "expanded": true,
                 "pages": [
                   "Help-Center/Participatinginmarkets",
                   "Help-Center/Marketpageoverview",
@@ -62,6 +65,7 @@
               },
               {
                 "group": "Creating a market",
+                "expanded": true,
                 "pages": [
                   "Help-Center/Creatingamarket",
                   "Help-Center/Drafting-a-good-market-question",
@@ -74,6 +78,7 @@
               "Help-Center/FilingaDispute",
               {
                 "group": "Raindrops",
+                "expanded": true,
                 "pages": [
                   "Help-Center/Rewards",
                   "Help-Center/RainsPointSystem",
@@ -84,6 +89,7 @@
               "Help-Center/Howtowithdrawyourfunds",
               {
                 "group": "About the $RAIN token",
+                "expanded": true,
                 "pages": [
                   "Help-Center/AbouttheRAINtoken",
                   "Help-Center/Inflationdeflationmechanism",
