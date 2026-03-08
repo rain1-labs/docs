@@ -54,61 +54,12 @@ for (const tx of txs) {
 
 Here is what each input in the transaction builder means:
 
-<ParamField body="marketQuestion" type="string" required>
-  The question or title of your market (e.g., "Will BTC hit 100k?").
-</ParamField>
-
-<ParamField body="marketOptions" type="string[]" required>
-  An array of the possible outcomes for the market.
-</ParamField>
-
-<ParamField body="marketTags" type="string[]" required>
-  Tags used to categorize and filter the market on the platform.
-</ParamField>
-
-<ParamField body="marketDescription" type="string" required>
-  A detailed description or the specific resolution criteria for the market.
-</ParamField>
-
-<ParamField body="isPublic" type="boolean" required>
-  Determines if the market is open to everyone (`true`) or access-restricted (`false`).
-</ParamField>
-
-<ParamField body="isPublicPoolResolverAi" type="boolean" required>
-  Dictates if the AI oracle handles the resolution.
-</ParamField>
-
-<ParamField body="creator" type="string" required>
-  The wallet address of the user creating the market.
-</ParamField>
-
-<ParamField body="startTime" type="bigint" required>
-  A Unix timestamp indicating when trading is allowed to begin.
-</ParamField>
-
-<ParamField body="endTime" type="bigint" required>
-  A Unix timestamp indicating when the market closes for trading and awaits resolution.
-</ParamField>
-
-<ParamField body="no_of_options" type="bigint" required>
-  The numerical count of available choices (must match the length of `marketOptions`).
-</ParamField>
-
-<ParamField body="inputAmountWei" type="bigint" required>
-  Your initial funding. The minimum requirement is $10 in the chosen token.
-</ParamField>
-
-<ParamField body="barValues" type="number[]" required>
-  Sets the starting probability distribution for the options as a percentage. In this example, `[50, 50]` means both "Yes" and "No" start with a 50% probability.
-</ParamField>
-
-<ParamField body="baseToken" type="string" required>
-  The contract address of the currency being used (e.g., USDT).
-</ParamField>
-
-<ParamField body="tokenDecimals" type="number" required>
-  The number of decimals for the base token (e.g., `6` for USDT) to ensure math is calculated correctly.
-</ParamField>
+* **Text Fields:** `marketQuestion`, `marketDescription`, and `marketTags` define how the market appears to users.
+* **Options:** `marketOptions` is an array of the possible outcomes. `no_of_options` is the numerical count of those choices.
+* **Permissions:** `isPublic` determines if the market is open or access-restricted. `isPublicPoolResolverAi` dictates if the AI oracle handles the resolution.
+* **Timing:** `startTime` and `endTime` are Unix timestamps defining when the market is active.
+* **Liquidity & Tokens:** `inputAmountWei` is your initial funding. The minimum requirement is $10 in the chosen token. `baseToken` is the contract address of the currency being used, and `tokenDecimals` ensures the math is calculated correctly.
+* **Initial Odds:** `barValues` sets the starting probability distribution for the options as a percentage. In this example, `[50, 50]` means both "Yes" and "No" start with a 50% probability.
 
 ## Managing the Market Lifecycle
 
