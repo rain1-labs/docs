@@ -1,0 +1,52 @@
+---
+title: "Installation & Initialization"
+description: "Set up the RNG Layer SDK in your project and connect to the correct Arbitrum environment."
+---
+
+Get the RNG Layer SDK running in your project and connect to the right environment. The RNG Layer SDK is a lightweight, standalone package separate from the core Rain SDK. It is specifically designed to handle all interactions with the limited shared liquidity pool and token allowances on Arbitrum.
+
+<CodeGroup>
+```bash npm
+npm install rng-layer-sdk
+```
+```bash yarn
+yarn add rng-layer-sdk
+```
+</CodeGroup>
+
+## Initialization
+
+The SDK exposes two primary entry-point classes: `Liquidity` and `Allowance`. Both classes accept an optional environment configuration object when you initialize them. If you do not pass an environment parameter, the SDK will default to development. 
+
+```typescript
+import { Liquidity, Allowance } from "rng-layer-sdk";
+
+// Default (development)
+const liquidity = new Liquidity();
+const allowance = new Allowance();
+
+// Specify environment
+const liquidity = new Liquidity({ environment: "production" });
+const allowance = new Allowance({ environment: "production" });
+```
+
+## Supported Environments
+
+The environment you choose automatically routes your SDK calls to the correct smart contracts on the Arbitrum network.
+
+| Value | Description |
+|---|---|
+| `development` | Dev contracts on Arbitrum |
+| `staging` | Staging contracts on Arbitrum |
+| `production` | Production contracts on Arbitrum |
+
+---
+
+<CardGroup cols={2}>
+  <Card title="Liquidity Class" icon="droplet" href="/liquidity-class">
+    Learn how to read pool state and build liquidity transactions.
+  </Card>
+  <Card title="Allowance Class" icon="shield-check" href="/allowance-class">
+    Check token permissions before interacting with the pool.
+  </Card>
+</CardGroup>

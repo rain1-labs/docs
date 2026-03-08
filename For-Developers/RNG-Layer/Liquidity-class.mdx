@@ -1,0 +1,329 @@
+---
+title: "Liquidity Class"
+description: "The central hub for interacting with the RNG Layer's limited shared liquidity pool."
+---
+
+In the RNG Layer, all randomly pre-generated scenarios draw from a single, unified source of funds. The `Liquidity` class is your primary interface for interacting with this limited shared liquidity pool on the Arbitrum network.
+
+Whether you are building a dashboard to show real-time platform statistics, or a fully-featured interface for Liquidity Providers (LPs) to manage their deposits, this class provides all the necessary methods to interact with the underlying smart contracts safely and efficiently.
+
+## How it Works
+
+To keep your application fast and give you complete control over transaction execution, the `Liquidity` class is divided into two distinct types of operations:
+
+1. **Read Methods:** These methods query the blockchain for current state data, such as the total liquidity available, the maximum open position allowed, or a specific user's balance. Because these are read-only operations, they are instantaneous and require no gas fees.
+2. **Write Methods:** When a user wants to change the state of the pool, such as depositing new funds or initiating a withdrawal, the SDK does not execute the transaction directly. Instead, these methods build and return the exact encoded `calldata` (raw transaction payload) required. You then pass this payload to your user's wallet or smart account to be signed and broadcasted to the network.
+
+By separating data fetching from transaction building, the SDK ensures that your frontend remains flexible, whether you are relying on standard Web3 wallets or implementing gasless transactions via Account Abstraction.
+
+---
+
+
+## Read Methods
+
+Query the state of the limited shared liquidity pool and check user balances. The `Liquidity` class provides a set of read-only methods to fetch data directly from the RNG Layer's smart contracts. Because these methods only read data, they do not require transaction signing or gas fees, making them perfect for populating your application's frontend.
+
+### Pool State Methods
+
+These methods allow you to query the overall health and capacity of the limited shared liquidity pool. You can use these to show users how much volume the platform is handling or to enforce maximum trade sizes in your UI.
+
+#### `getTotalLiquidity`
+
+Fetches the total liquidity (total assets) in the pool.
+
+**Method Signature**
+
+```typescript
+getTotalLiquidity(): Promise<string>
+```
+
+**Returns** `string` - Total liquidity converted from Wei (mwei / 6 decimals).
+
+**Example**
+
+```typescript
+const total = await liquidity.getTotalLiquidity();
+console.log(total); // "326901.222201"
+```
+
+---
+
+#### `getMaxTrade`
+
+Fetches the total assets available in the liquidity pool.
+
+**Method Signature**
+
+```typescript
+getMaxTrade(): Promise<string>
+```
+
+**Returns** `string` - Total assets converted from Wei (mwei / 6 decimals).
+
+**Example**
+
+```typescript
+const maxTrade = await liquidity.getMaxTrade();
+console.log(maxTrade); // "326901.222201"
+```
+---
+
+#### `getMaxOpen`
+
+Fetches the maximum amount that can be opened in the liquidity pool. Calculated as `(totalAssets - totalFees) / 520`.
+
+**Method Signature**
+
+```typescript
+getMaxOpen(): Promise<number>
+```
+
+**Returns** `number` - Max openable amount in USD (6 decimals, mwei-based).
+
+**Example**
+
+```typescript
+const maxOpen = await liquidity.getMaxOpen();
+console.log(maxOpen); // 628.657
+```
+---
+
+#### `getPlatformFee`
+
+Fetches the total platform fees collected.
+
+**Method Signature**
+
+```typescript
+getPlatformFee(): Promise<string>
+```
+
+**Returns** `string` - Total fees converted from Wei (mwei / 6 decimals).
+
+**Example**
+
+```typescript
+const fees = await liquidity.getPlatformFee();
+console.log(fees); // "1788.410256"
+```
+
+---
+
+### User Balance Methods
+
+These methods require a user's internal account address and are used to track an individual's specific interactions and balances within the shared pool.
+
+#### `getCurrentLiquidityYouProvide`
+
+Fetches the current liquidity balance provided by a user.
+
+**Method Signature**
+
+```typescript
+CurrentLiquidityYouProvide(
+  internalAccount: `0x${string}`
+): Promise<string>
+```
+
+**Parameters**
+
+| Parameter         | Type          | Required | Description                     |
+| ----------------- | ------------- | -------- | ------------------------------- |
+| `internalAccount` | `0x${string}` | ✅        | User's internal account address |
+
+**Returns** `string` - User's liquidity balance converted from gwei (9 decimals).
+
+**Example**
+
+```typescript
+const myLiquidity = await liquidity.CurrentLiquidityYouProvide(
+  "0xa682C9022871881b3257A72E103B50fC75013245"
+);
+console.log(myLiquidity); // "3.412555239"
+```
+---
+
+#### `UserReserved`
+
+Fetches the raw reserved amount for a user.
+
+**Method Signature**
+
+```typescript
+UserReserved(
+  internalAccount: `0x${string}`
+): Promise<bigint>
+```
+
+**Parameters**
+
+| Parameter         | Type          | Required | Description                     |
+| ----------------- | ------------- | -------- | ------------------------------- |
+| `internalAccount` | `0x${string}` | ✅        | User's internal account address |
+
+**Returns** `bigint` - Raw reserved amount (not converted).
+
+**Example**
+
+```typescript
+const reserved = await liquidity.UserReserved(
+  "0xa682C9022871881b3257A72E103B50fC75013245"
+);
+console.log(reserved); // 9500000n
+```
+---
+
+#### `UserPrviewUnreserve`
+
+Previews the unreserve data for a user before executing the unreserve transaction.
+
+**Method Signature**
+
+```typescript
+UserPrviewUnreserve(
+  internalAccount: `0x${string}`
+): Promise<object>
+```
+
+**Parameters**
+
+| Parameter         | Type          | Required | Description                     |
+| ----------------- | ------------- | -------- | ------------------------------- |
+| `internalAccount` | `0x${string}` | ✅        | User's internal account address |
+
+**Returns** `object` - Raw unreserve preview data returned from the contract.
+
+**Example**
+
+```typescript
+const preview = await liquidity.UserPrviewUnreserve(
+  "0xa682C9022871881b3257A72E103B50fC75013245"
+);
+console.log(preview);
+```
+
+---
+
+## Write Methods
+
+Build the encoded calldata needed to deposit and withdraw liquidity from the shared pool. Write methods return encoded transaction calldata as an array of `EncodedCall` objects. They do not execute transactions, so you must send them through your own provider or smart account client.
+
+**Return Type (All Write Methods)**
+
+```typescript
+interface EncodedCall {
+  to: `0x${string}`;
+  data: `0x${string}`;
+}
+```
+
+All write methods return `Promise<EncodedCall[]>`.
+
+#### `addLiquidityMethod`
+
+Builds encoded calldata for depositing liquidity into the pool.
+
+**Method Signature**
+
+```typescript
+addLiquidityMethod(params: {
+  amount: string;
+  smartAccount: string;
+}): Promise<EncodedCall[]>
+```
+
+**Parameters**
+
+| Parameter      | Type     | Required | Description               |
+| -------------- | -------- | -------- | ------------------------- |
+| `amount`       | `string` | ✅        | Amount of USDT to deposit |
+| `smartAccount` | `string` | ✅        | Smart account address     |
+
+**Example**
+
+```typescript
+const calls = await liquidity.addLiquidityMethod({
+  amount: "1000",
+  smartAccount: "0xa682C9022871881b3257A72E103B50fC75013245",
+});
+
+// Execute via your smart account client
+await smartAccountClient.sendTransaction({ calls });
+```
+---
+
+#### `removeLiquidity`
+
+Builds encoded calldata for withdrawing liquidity from the pool.
+
+**Method Signature**
+
+```typescript
+removeLiquidity(params: {
+  address: `0x${string}`;
+  amount: string;
+  smartAccount: `0x${string}`;
+}): Promise<EncodedCall[]>
+```
+
+**Parameters**
+
+| Parameter      | Type          | Required | Description                     |
+| -------------- | ------------- | -------- | ------------------------------- |
+| `address`      | `0x${string}` | ✅        | Liquidity provider address      |
+| `amount`       | `string`      | ✅        | Amount of liquidity to withdraw |
+| `smartAccount` | `0x${string}` | ✅        | Smart account address           |
+
+**Example**
+
+```typescript
+const calls = await liquidity.removeLiquidity({
+  address: "0xa682C9022871881b3257A72E103B50fC75013245",
+  amount: "500",
+  smartAccount: "0xa682C9022871881b3257A72E103B50fC75013245",
+});
+
+// Execute via your smart account client
+await smartAccountClient.sendTransaction({ calls });
+```
+---
+
+#### `addUnReserveMethod`
+
+Builds encoded calldata for unreserving liquidity.
+
+**Method Signature**
+
+```typescript
+addUnReserveMethod(params: {
+  address: `0x${string}`;
+}): Promise<EncodedCall[]>
+```
+
+**Parameters**
+
+| Parameter | Type          | Required | Description    |
+| --------- | ------------- | -------- | -------------- |
+| `address` | `0x${string}` | ✅        | User's address |
+
+**Example**
+
+```typescript
+const calls = await liquidity.addUnReserveMethod({
+  address: "0xa682C9022871881b3257A72E103B50fC75013245",
+});
+
+// Execute via your smart account client
+await smartAccountClient.sendTransaction({ calls });
+```
+
+---
+
+<CardGroup cols={2}>
+  <Card icon="play" href="/installation" title="Installation & Initialization">
+    Review how to set up the SDK in your project.
+  </Card>
+  <Card icon="shield-check" href="/allowance-class" title="Allowance Class">
+    Learn how to check token permissions before building deposit transactions.
+  </Card>
+</CardGroup>
