@@ -1,0 +1,45 @@
+---
+title: "Environments & Configuration"
+description: "Set up your application for development, testing, or production."
+---
+
+When initializing the Rain class, your configuration dictates which endpoints and contract addresses the SDK interacts with.
+
+## Environment Addresses
+
+The SDK automatically selects the correct Factory Address and API endpoint based on your chosen environment.
+
+| Environment | API Endpoint | Factory Address |
+| :--- | :--- | :--- |
+| development | dev-api.rain.one | 0x148DA7F2039B2B00633AC2ab566f59C8a4C86313 |
+| staging | stg-api.rain.one | 0x6109c9f28FE3Ad84c51368f7Ef2d487ca020c561 |
+| production | prod-api.rain.one | 0xccCB3C03D9355B01883779EF15C1Be09cf3623F1 |
+
+You will also frequently interact with the standard base token, which is Arbitrum USDT (0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9) using 6 decimals.
+
+## Full Configuration Options
+
+To access all features, including WebSockets and Subgraph analytics, you can expand your initial configuration.
+
+```typescript
+const rain = new Rain({
+  environment: 'development',         // 'development' | 'staging' | 'production'
+  rpcUrl: 'https://...',              // Optional, defaults to public Arbitrum RPCs
+  wsRpcUrl: 'wss://...',              // Required for subscribeToMarketEvents / subscribePriceUpdates
+  subgraphUrl: 'https://...',         // Required for transaction history / price history / analytics
+  subgraphApiKey: '...',              // Optional, TheGraph API key
+  wsReconnect: { attempts: 5, delay: 1000 },  // Optional, WebSocket auto-reconnect
+});
+```
+
+## Data Sources
+
+The SDK reads from three sources depending on the method:
+
+| Source | Used by | Config |
+| :--- | :--- | :--- |
+| Rain API | `getPublicMarkets`, `getMarketDetails` (partial), `buildClaimTx`, `buildCreateMarketTx` | `environment` (auto) |
+| On-chain | `getMarketPrices`, `getMarketVolume`, `getPositions`, all tx builders | `rpcUrl` (auto-selected) |
+| Subgraph | `getTransactions`, `getPriceHistory`, `getPnL`, `getLeaderboard` | `subgraphUrl` + `subgraphApiKey` |
+
+Methods that require the subgraph will throw if `subgraphUrl` is not configured.
