@@ -1,122 +1,69 @@
 {
   "$schema": "https://mintlify.com/docs.json",
+  "name": "Rain Developers",
   "theme": "mint",
-  "name": "Mint Starter Kit",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#212121",
+    "light": "#E5FE00",
+    "dark": "#212121"
   },
   "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
-  },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/Rain__Protocol",
+      "telegram": "https://t.me/+fAv7-KCqpis0NDI0",
+      "discord": "https://discord.com/invite/rainprotocol",
+      "youtube": "https://www.youtube.com/@Rain_Protocol",
+      "linkedin": "https://www.linkedin.com/company/rainprotocol"
     }
+  },
+  "settings": {
+    "customScripts": [
+      "/style.css"
+    ]
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "For Developers",
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "Rain-Builders"
+            ]
+          },
+          {
+            "group": "Rain SDK",
+            "pages": [
+              "Rain-SDK/Creating-a-Market",
+              "Rain-SDK/Trading-Positions",
+              "Rain-SDK/Liquidity",
+              "Rain-SDK/Account-Abstraction",
+              "Rain-SDK/WebSockets-Live-Data",
+              "Rain-SDK/Analytics-History",
+              "Rain-SDK/Environments-Configuration",
+              "Rain-SDK/API-Reference",
+              "Rain-SDK/Full-Method-Reference"
+            ]
+          },
+          {
+            "group": "RNG Layer",
+            "pages": [
+              "RNG-Layer/Installation-Initialization",
+              "RNG-Layer/Liquidity-Class",
+              "RNG-Layer/Allowance-Class",
+              "RNG-Layer/Recommended-Usage-Pattern",
+              "RNG-Layer/Local-Development-Setup",
+              "RNG-Layer/Versioning-Policy"
+            ]
+          }
+        ]
+      }
+    ]
   }
 }
