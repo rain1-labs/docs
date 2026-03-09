@@ -30,13 +30,7 @@
     "tabs": [
       {
         "tab": "For Developers",
-        "groups": [
-          {
-            "group": "Introduction",
-            "pages": [
-              "For-Developers/Rain-Builders"
-            ]
-          },
+        "groups": [        
           {
             "group": "Rain SDK",
             "pages": [
