@@ -1,0 +1,54 @@
+---
+title: "Liquidity"
+description: "Supply funds to prediction markets and earn fees from trading volume."
+---
+
+Every market on Rain needs liquidity to function. Because trades execute against an Automated Market Maker (AMM), the pool requires an initial supply of funds to price shares and settle outcomes.
+
+When you create a market, you have to provide at least $10 in initial liquidity. Once a market is live, anyone can step in and add more funds to the pool. By building liquidity features into your application, you give your users a way to participate and earn a yield without having to pick a winning side.
+
+## How LPs Earn Fees
+
+Liquidity providers take on the other side of the trades. They fund the entire market rather than betting on "Yes" or "No". In return for taking on this risk, they earn a cut of the trading activity.
+
+The protocol charges a 5% fee on transactions. From that total volume, 1.2% is automatically distributed back to the liquidity providers of that specific market.
+
+For applications built on the RNG Layer, like Risk Markets, liquidity providers act as the "house". They still earn the 1.2% volume fee. Additionally, if players fail to exit their positions before a scenario terminates, their stakes remain in the pool, which increases the value of the LP shares.
+
+## Adding Liquidity
+
+To let users fund a market, you build a transaction using the `buildAddLiquidityTx` method. The user specifies the market and the amount of stablecoins or $RAIN they want to supply.
+
+```typescript
+import { Rain } from '@rainprotocolsdk/sdk';
+
+const rain = new Rain({ environment: 'production' });
+
+// Build the raw transaction to add liquidity
+const addLiquidityTx = rain.buildAddLiquidityTx({
+  marketContractAddress: '0x...',
+  liquidityAmountInWei: 100_000_000n // 100 USDT (Arbitrum USDT uses 6 decimals)
+});
+```
+
+Once this transaction settles, the user receives LP shares representing their portion of the pool.
+
+## Withdrawing Liquidity
+
+It is important to note that liquidity is locked until the market reaches its resolution. There is no method to remove liquidity while the market is active.
+
+Liquidity providers recover their initial supplied share, plus any accumulated fees, by using the standard `buildClaimTx` method after the market officially resolves and settles.
+
+## Reading LP Positions
+
+You can query the blockchain to show users exactly how their liquidity is performing. The `getLPPosition` method returns the user's current LP balance and value for a specific market.
+
+```typescript
+// Fetch a user's LP position for a specific market
+const lpPosition = await rain.getLPPosition(
+  '0xUserAddress...',
+  'market_id_string'
+);
+```
+
+You can use this data to build a "My Liquidity" dashboard, showing users their standing and accumulated fees in real time.

@@ -1,0 +1,75 @@
+---
+title: "WebSockets & Live Data"
+description: "Keep your application in sync with the blockchain without constantly polling for updates."
+---
+
+When you build a trading interface, speed matters. Asking the blockchain for data over and over takes up resources and slows down your front end. Our WebSockets give you a direct feed of activity instead.
+
+The stateless Rain class manages your WebSocket connections. You can use it to listen for specific trades, track market resolutions, or stream real-time prices straight from the Automated Market Maker (AMM).
+
+## Configuring the Client
+
+To use the WebSocket features, you must include a WebSocket RPC URL (`wsRpcUrl`) when initializing the Rain class. Without this parameter, the subscription methods will not function.
+
+```typescript
+const rain = new Rain({
+  environment: 'development',
+  wsRpcUrl: 'wss://arbitrum-one-rpc.publicnode.com',
+});
+```
+
+## Streaming Market Events
+
+If you want to track the lifecycle of a market or build a live feed of recent trades, you use the `subscribeToMarketEvents` method. This lets your application react instantly when someone buys shares, sells their position, or when a market closes.
+
+```typescript
+const unsubscribe = rain.subscribeToMarketEvents({
+  marketAddress: '0x...',
+  eventNames: ['EnterOption', 'Sync'], // Optional filter - omit for all events
+  onEvent: (event) => {
+    console.log(event.eventName, event.args);
+  },
+  onError: (err) => console.error(err),
+});
+```
+
+### Available Events
+
+When listening to market events, you can filter for specific actions using the `eventNames` array. Here are the events emitted by the protocol:
+
+| Category | Events |
+| :--- | :--- |
+| **Trades** | `EnterOption`, `PlaceBuyOrder`, `PlaceSellOrder`, `ExecuteBuyOrder`, `ExecuteSellOrder`, `CancelBuyOrder`, `CancelSellOrder` |
+| **Price sync** | `Sync` - AMM reserve rebalance (emitted once per option pair per trade) |
+| **Lifecycle** | `Claim`, `ChooseWinner`, `ClosePool` |
+
+## Live Price Updates
+
+Because Rain uses an AMM, the odds and share prices change every time someone makes a trade. If you want to show users the most accurate entry and exit costs, you need a live price feed.
+
+The `subscribePriceUpdates` method sends you the latest calculations directly from the protocol every time a trade triggers a reserve rebalance.
+
+```typescript
+const unsubscribe = rain.subscribePriceUpdates({
+  marketAddress: '0x...',
+  onPriceUpdate: (update) => {
+    // update.prices: OptionPrice[] - fresh prices after each trade
+    // update.triggeredBy: MarketTradeEvent - the event that caused the update
+    console.log(update.prices);
+  },
+  onError: (err) => console.error(err),
+});
+```
+
+## Managing Subscriptions and Cleanup
+
+Both subscription methods return an `unsubscribe` function. It is a best practice to call this function when a user navigates away from a market page to prevent memory leaks.
+
+If you need to completely shut down the WebSocket connection for the entire Rain instance, you can use the `destroyWebSocket` method.
+
+```typescript
+// Stop listening to specific subscriptions
+unsubscribe();
+
+// Cleanup the entire WebSocket connection
+await rain.destroyWebSocket();

@@ -1,0 +1,55 @@
+---
+title: "Recommended Usage Pattern"
+description: "Learn the standard workflow for combining read methods, allowance checks, and transaction building."
+---
+
+The RNG Layer SDK separates data fetching from transaction execution. A typical user journey for a Liquidity Provider involves checking the current pool state, verifying their token permissions, building the deposit calldata, and executing the transaction via a smart account. 
+
+Here is the complete, recommended flow for interacting with the limited shared liquidity pool:
+
+```typescript
+import { Liquidity, Allowance } from "rng-layer-sdk";
+
+const liquidity = new Liquidity({ environment: "production" });
+const allowanceClient = new Allowance({ environment: "production" });
+
+const myAccount = "0xYourSmartAccount...";
+
+// 1. Read pool state
+const totalLiquidity = await liquidity.getTotalLiquidity();
+const maxTrade = await liquidity.getMaxTrade();
+const maxOpen = await liquidity.getMaxOpen();
+const myLiquidity = await liquidity.CurrentLiquidityYouProvide(myAccount);
+
+// 2. Check allowance before depositing
+const allowance = await allowanceClient.checkAllowance(myAccount);
+
+// 3. Build deposit calldata
+const depositCalls = await liquidity.addLiquidityMethod({
+  amount: "1000",
+  smartAccount: myAccount,
+});
+
+// 4. Execute via your smart account client
+await smartAccountClient.sendTransaction({ calls: depositCalls });
+
+// 5. To withdraw - preview unreserve first, then remove
+const preview = await liquidity.UserPrviewUnreserve(myAccount);
+const withdrawCalls = await liquidity.removeLiquidity({
+  address: myAccount,
+  amount: "500",
+  smartAccount: myAccount,
+});
+await smartAccountClient.sendTransaction({ calls: withdrawCalls });
+```
+
+---
+
+<CardGroup cols={2}>
+  <Card title="Allowance Class" icon="shield-check" href="/allowance-class">
+    Review how to verify token permissions.
+  </Card>
+  <Card title="Local Development Setup" icon="code" href="/local-development-setup">
+    Learn how to link the SDK locally for testing.
+  </Card>
+</CardGroup>

@@ -1,0 +1,71 @@
+---
+title: "Account Abstraction"
+description: "Remove gas fees from your trading experience using stateful execution."
+---
+
+The SDK splits its functionality into two classes. While the Rain class is stateless and handles your queries and transaction building, it does not send transactions.
+
+To execute trades without requiring users to hold native ETH for gas, you use the RainAA class. This stateful class manages Alchemy smart accounts with gas sponsorship. It signs and sends the transactions you build via account abstraction.
+
+## Setting Up the Execution Engine
+
+To get started, you initialize the RainAA class with your standard viem wallet client and your Alchemy credentials.
+
+```typescript
+import { RainAA } from '@rainprotocolsdk/sdk';
+import { arbitrum } from 'viem/chains';
+
+const rainAA = new RainAA({
+  walletClient: yourWalletClient, // viem WalletClient
+  alchemyApiKey: 'your-alchemy-key',
+  paymasterPolicyId: 'your-policy-id',
+  chain: arbitrum,
+  rpcUrl: 'https://...', // Optional
+});
+```
+
+Once initialized, you connect the client. This derives a smart account from the user's Externally Owned Account (EOA).
+
+```typescript
+// Connect, derives smart account from EOA
+const smartAccountAddress = await rainAA.connect();
+console.log('Smart account:', smartAccountAddress);
+```
+
+## Executing Transactions
+
+Once the smart account is connected, you can execute gasless trades. This relies on a simple hand-off: you use the Rain client to generate the transaction instructions, and then pass those instructions to the RainAA client to actually broadcast them to the blockchain.
+
+```typescript
+// Send transactions built by Rain
+const rain = new Rain({ environment: 'production' });
+const rawTx = rain.buildBuyOptionRawTx({ ... });
+const txHash = await rainAA.sendTransaction(rawTx);
+```
+
+## Flow: Rain + RainAA Together
+
+To execute a transaction, the workflow requires using both classes together. You use the stateless Rain class to define what to do, and the stateful RainAA class to handle how it is executed.
+
+```typescript
+// 1. Rain builds the transaction (WHAT)
+const rawTx = rain.buildBuyOptionRawTx({
+  marketContractAddress: '0x...',
+  selectedOption: 1n,
+  buyAmountInWei: 10_000_000n,
+});
+
+// 2. RainAA sends it via smart account (HOW)
+const txHash = await rainAA.sendTransaction(rawTx);
+```
+
+## Session Management
+
+The RainAA class also provides simple accessors to retrieve the connected smart account address and the underlying AA client. When the session is over, you can disconnect the user.
+
+```typescript
+rainAA.address; // Smart account address (throws if not connected)
+rainAA.client; // Underlying AA client (throws if not connected)
+
+// Disconnect
+rainAA.disconnect();

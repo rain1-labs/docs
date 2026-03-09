@@ -1,0 +1,114 @@
+---
+title: "Trading & Positions"
+description: "Build interfaces for buying shares, tracking portfolios, and claiming winnings."
+---
+
+Once a market is live, participants can start taking positions. The Rain SDK allows you to construct trading actions and query user data directly from the protocol.
+
+Because trades happen against our Automated Market Maker (AMM), your users get instant execution. They do not have to wait for a counterparty to match their order. You can use the stateless Rain class to build the raw transactions for these trades, and then execute them using standard wallets or our RainAA gas-sponsored accounts.
+
+## Buying Options
+
+When a user buys an option, they are purchasing shares of a specific outcome. The price of these shares is determined by the AMM based on the current pool ratios.
+
+Here is how you build a standard market order to buy shares.
+
+```typescript
+import { Rain } from '@rainprotocolsdk/sdk';
+
+const rain = new Rain({ environment: 'production' });
+
+// Build the raw buy transaction
+const buyTx = rain.buildBuyOptionRawTx({
+  marketContractAddress: '0x...',
+  selectedOption: 1n, // The option index (e.g., 0 for Yes, 1 for No)
+  buyAmountInWei: 10_000_000n, // 10 USDT (Arbitrum USDT uses 6 decimals)
+});
+```
+
+If a user wants to set a specific entry target rather than taking the current AMM price, you can build a limit order instead.
+
+```typescript
+// Build a limit buy transaction
+const limitTx = rain.buildLimitBuyOptionTx({
+  marketContractAddress: '0x...',
+  selectedOption: 1,
+  pricePerShare: 500000000000000000n, // 0.50 represented in 1e18
+  buyAmountInWei: 10_000_000n,
+  tokenDecimals: 6,
+});
+```
+
+## Selling Options
+
+Users do not have to hold their shares until the market resolves. If the odds shift in their favor, they can sell their position early to lock in a profit. They can also cut their losses if they change their mind.
+
+Notice that for selling, the parameters require a target price and the number of shares, not the dollar value.
+
+```typescript
+// Build the raw sell transaction
+const sellTx = rain.buildSellOptionTx({
+  marketContractAddress: '0x...',
+  selectedOption: 1,
+  pricePerShare: 0.75, // Target price format (0-1)
+  shares: 5_000_000n, // The number of shares to sell
+  tokenDecimals: 6,
+});
+```
+
+## Canceling Orders
+
+If a user places limit orders that have not been filled yet, they might want to cancel them. You can build a transaction to remove these open orders by referencing their specific order IDs.
+
+```typescript
+// Build a transaction to cancel specific open buy orders
+const cancelTx = rain.buildCancelBuyOrdersTx({
+  marketContractAddress: '0x...',
+  orders: [
+    { option: 1, price: 0.5, orderID: 1n },
+    { option: 1, price: 0.6, orderID: 2n },
+  ],
+});
+```
+
+Note: You can use `buildCancelSellOrdersTx` following the exact same structure to cancel open sell orders.
+
+## Reading Positions & Portfolio Value
+
+A great trading interface needs clear data. The SDK gives you several read-only methods to fetch a user's current holdings without requiring them to connect a wallet.
+
+You simply pass in the user's public address.
+
+```typescript
+// Fetch all open positions for a specific user
+const userPositions = await rain.getPositions('0xUserAddress...');
+
+// Get the specific position for a single market
+const singlePosition = await rain.getPositionByMarket(
+  '0xUserAddress...',
+  'market_id_string'
+);
+
+// Get the total computed value of the user's current portfolio
+const portfolioValue = await rain.getPortfolioValue({
+  userAddress: '0xUserAddress...'
+});
+```
+
+These queries return structured data that you can use to populate leaderboards, user dashboards, and historical performance charts.
+
+## Claiming Winnings
+
+When a market concludes, it goes through a resolution phase and a short dispute window. Once that window closes, the market is officially settled.
+
+Users who hold shares in the winning outcome can then claim their payout. The payout is drawn from the total pool of funds, after a platform fee is collected.
+
+```typescript
+// Build the raw claim transaction
+const claimTx = await rain.buildClaimTx({
+  marketId: '698c8f116e985bbfacc7fc01',
+  walletAddress: '0x996ea23940f4a01610181D04bdB6F862719b63f0',
+});
+```
+
+This single transaction sends the user's original stake plus their winnings directly to their wallet or smart account.
