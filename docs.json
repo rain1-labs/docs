@@ -55,7 +55,7 @@
             "group": "RNG Layer",
             "pages": [
               "RNG-Layer/Introduction-to-the-RNG-Layer",
-              "RNG-Layer/Installation-Initialization"
+              "RNG-Layer/Installation-Initialization",
               "RNG-Layer/Liquidity-class",
               "RNG-Layer/Allowance-class",
               "RNG-Layer/Recommended-Usage-Pattern",
