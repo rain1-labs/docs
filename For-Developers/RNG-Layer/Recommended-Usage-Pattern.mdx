@@ -3,7 +3,7 @@ title: "Recommended Usage Pattern"
 description: "Learn the standard workflow for combining read methods, allowance checks, and transaction building."
 ---
 
-The RNG Layer SDK separates data fetching from transaction execution. A typical user journey for a Liquidity Provider involves checking the current pool state, verifying their token permissions, building the deposit calldata, and executing the transaction via a smart account. 
+The RNG Layer SDK separates data fetching from transaction execution. A typical user journey for a Liquidity Provider involves checking the current pool state, verifying their token permissions, building the deposit calldata, and executing the transaction via a smart account.
 
 Here is the complete, recommended flow for interacting with the limited shared liquidity pool:
 
@@ -42,14 +42,3 @@ const withdrawCalls = await liquidity.removeLiquidity({
 });
 await smartAccountClient.sendTransaction({ calls: withdrawCalls });
 ```
-
----
-
-<CardGroup cols={2}>
-  <Card title="Allowance Class" icon="shield-check" href="/allowance-class">
-    Review how to verify token permissions.
-  </Card>
-  <Card title="Local Development Setup" icon="code" href="/local-development-setup">
-    Learn how to link the SDK locally for testing.
-  </Card>
-</CardGroup>

@@ -18,7 +18,6 @@ By separating data fetching from transaction building, the SDK ensures that your
 
 ---
 
-
 ## Read Methods
 
 Query the state of the limited shared liquidity pool and check user balances. The `Liquidity` class provides a set of read-only methods to fetch data directly from the RNG Layer's smart contracts. Because these methods only read data, they do not require transaction signing or gas fees, making them perfect for populating your application's frontend.
@@ -66,6 +65,7 @@ getMaxTrade(): Promise<string>
 const maxTrade = await liquidity.getMaxTrade();
 console.log(maxTrade); // "326901.222201"
 ```
+
 ---
 
 #### `getMaxOpen`
@@ -86,6 +86,7 @@ getMaxOpen(): Promise<number>
 const maxOpen = await liquidity.getMaxOpen();
 console.log(maxOpen); // 628.657
 ```
+
 ---
 
 #### `getPlatformFee`
@@ -141,6 +142,7 @@ const myLiquidity = await liquidity.CurrentLiquidityYouProvide(
 );
 console.log(myLiquidity); // "3.412555239"
 ```
+
 ---
 
 #### `UserReserved`
@@ -171,6 +173,7 @@ const reserved = await liquidity.UserReserved(
 );
 console.log(reserved); // 9500000n
 ```
+
 ---
 
 #### `UserPrviewUnreserve`
@@ -250,6 +253,7 @@ const calls = await liquidity.addLiquidityMethod({
 // Execute via your smart account client
 await smartAccountClient.sendTransaction({ calls });
 ```
+
 ---
 
 #### `removeLiquidity`
@@ -286,6 +290,7 @@ const calls = await liquidity.removeLiquidity({
 // Execute via your smart account client
 await smartAccountClient.sendTransaction({ calls });
 ```
+
 ---
 
 #### `addUnReserveMethod`
@@ -316,14 +321,3 @@ const calls = await liquidity.addUnReserveMethod({
 // Execute via your smart account client
 await smartAccountClient.sendTransaction({ calls });
 ```
-
----
-
-<CardGroup cols={2}>
-  <Card icon="play" href="/installation" title="Installation & Initialization">
-    Review how to set up the SDK in your project.
-  </Card>
-  <Card icon="shield-check" href="/allowance-class" title="Allowance Class">
-    Learn how to check token permissions before building deposit transactions.
-  </Card>
-</CardGroup>

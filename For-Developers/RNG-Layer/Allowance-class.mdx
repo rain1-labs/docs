@@ -10,23 +10,25 @@ Before a user can deposit funds into the RNG Layer's liquidity pool, their smart
 The `Allowance` class provides read-only methods to check token allowances against specific smart accounts and contract addresses.
 
 ### `checkAllowance`
+
 Checks the USDT token allowance for a smart account against the liquidity contract.
 
 **Method Signature**
+
 ```typescript
 checkAllowance(smartAccount: `0x${string}`): Promise<string>
 ```
 
 **Parameters**
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `smartAccount` | `0x${string}` | ✅ | Smart account address |
+| Parameter      | Type          | Required | Description           |
+| -------------- | ------------- | -------- | --------------------- |
+| `smartAccount` | `0x${string}` | ✅        | Smart account address |
 
-**Returns**
-`string` - Allowance amount converted from Wei (mwei / 6 decimals).
+**Returns** `string` - Allowance amount converted from Wei (mwei / 6 decimals).
 
 **Example**
+
 ```typescript
 const allowanceInstance = new Allowance();
 
@@ -40,9 +42,11 @@ console.log(allowance); // "0"
 ---
 
 ### `getAllowanceByAddress`
+
 Checks the USDT token allowance for a smart account against a specific contract address.
 
 **Method Signature**
+
 ```typescript
 getAllowanceByAddress(
   smartAccount: `0x${string}`,
@@ -52,15 +56,15 @@ getAllowanceByAddress(
 
 **Parameters**
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `smartAccount` | `0x${string}` | ✅ | Smart account address |
-| `contractAddress` | `0x${string}` | ✅ | Contract address to check allowance for |
+| Parameter         | Type          | Required | Description                             |
+| ----------------- | ------------- | -------- | --------------------------------------- |
+| `smartAccount`    | `0x${string}` | ✅        | Smart account address                   |
+| `contractAddress` | `0x${string}` | ✅        | Contract address to check allowance for |
 
-**Returns**
-`bigint` - Raw allowance value (not converted).
+**Returns** `bigint` - Raw allowance value (not converted).
 
 **Example**
+
 ```typescript
 const allowanceInstance = new Allowance();
 
@@ -71,14 +75,3 @@ const allowance = await allowanceInstance.getAllowanceByAddress(
 
 console.log(allowance); // 9999999999999999999999999999996176830000n
 ```
-
----
-
-<CardGroup cols={2}>
-  <Card title="Liquidity Class" icon="droplet" href="/liquidity-class">
-    Review how to read pool state and build liquidity transactions.
-  </Card>
-  <Card title="Recommended Usage Pattern" icon="route" href="/recommended-usage">
-    Learn the standard workflow for interacting with the shared liquidity pool.
-  </Card>
-</CardGroup>
