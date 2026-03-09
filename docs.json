@@ -1,122 +1,105 @@
 {
   "$schema": "https://mintlify.com/docs.json",
+  "name": "Rain Help Center",
   "theme": "mint",
-  "name": "Mint Starter Kit",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#212121",
+    "light": "#E5FE00",
+    "dark": "#212121"
   },
   "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
-  },
-  "footer": {
+   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/Rain__Protocol",
+      "telegram": "https://t.me/+fAv7-KCqpis0NDI0",
+      "discord": "https://discord.com/invite/rainprotocol",
+      "youtube": "https://www.youtube.com/@Rain_Protocol",
+      "linkedin": "https://www.linkedin.com/company/rainprotocol"
     }
+  },
+  "settings": {
+    "customScripts": ["/style.css"]
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Rain Help Center",
+        "groups": [
+          {
+            "group": "Help Center",
+            "pages": [
+              {
+                "group": "Setting up your account",
+                "pages": [
+                  "Help-Center/Settingupyouraccount",
+                  "Help-Center/Connectyourwallet",
+                  "Help-Center/DepositFunds",
+                  "Help-Center/Setupyourprofile",
+                  "Help-Center/Cross-chainsupport",
+                  "Help-Center/MyProfile-Overview"
+                ]
+              },
+              {
+                "group": "Market types",
+                "expanded": true,
+                "pages": [
+                  "Help-Center/MarketTypes",
+                  "Help-Center/Publicmarkets",
+                  "Help-Center/Privatemarkets",
+                  "rain-help-center/help-center/what-are-altcoin-markets"
+                ]
+              },
+              {
+                "group": "Participating in markets",
+                "expanded": true,
+                "pages": [
+                  "Help-Center/Participatinginmarkets",
+                  "Help-Center/Marketpageoverview",
+                  "Help-Center/TradingOptions",
+                  "Help-Center/HowtoClaimYourRewards"
+                ]
+              },
+              {
+                "group": "Creating a market",
+                "expanded": true,
+                "pages": [
+                  "Help-Center/Creatingamarket",
+                  "Help-Center/Drafting-a-good-market-question",
+                  "Help-Center/HowtoLinkYourYouTubeLiveStream",
+                  "Help-Center/HowtoEndPredictionsinamarket"
+                ]
+              },
+              "Help-Center/Adding-liquidity-to-markets",
+              "Help-Center/Closingamarket",
+              "Help-Center/FilingaDispute",
+              {
+                "group": "Raindrops",
+                "expanded": true,
+                "pages": [
+                  "Help-Center/Rewards",
+                  "Help-Center/RainsPointSystem",
+                  "Help-Center/ReferralProgram"
+                ]
+              },
+              "Help-Center/PlatformFees",
+              "Help-Center/Howtowithdrawyourfunds",
+              {
+                "group": "About the $RAIN token",
+                "expanded": true,
+                "pages": [
+                  "Help-Center/AbouttheRAINtoken",
+                  "Help-Center/Inflationdeflationmechanism",
+                  "Help-Center/DAOgovernance"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }

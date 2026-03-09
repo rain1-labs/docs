@@ -1,0 +1,4 @@
+
+#footer a[href*="mintlify.com"] {
+  display: none !important;
+}
