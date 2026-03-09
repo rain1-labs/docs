@@ -1,0 +1,40 @@
+---
+title: "Local Development Setup"
+description: "Instructions for building and linking the RNG Layer SDK locally."
+---
+
+To use this SDK locally during development:
+
+Navigate to the SDK directory and link it:
+
+```bash
+cd rng-layer-sdk
+yarn build
+yarn link
+```
+
+In your consumer application directory, link to the local SDK:
+
+```bash
+cd /path/to/your/consumer/app
+yarn link "rng-layer-sdk"
+```
+
+After making changes to the SDK, rebuild it:
+
+```bash
+yarn build
+```
+
+Restart your consumer application to pick up the changes.
+
+---
+
+<CardGroup cols={2}>
+  <Card title="Recommended Usage Pattern" icon="route" href="/recommended-usage">
+    Review the standard workflow for interacting with the shared liquidity pool.
+  </Card>
+  <Card title="Versioning Policy" icon="code-branch" href="/versioning-policy">
+    Understand how we handle SDK updates and breaking changes.
+  </Card>
+</CardGroup>

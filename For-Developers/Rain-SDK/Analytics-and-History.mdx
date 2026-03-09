@@ -1,0 +1,93 @@
+---
+title: "Analytics & History"
+description: "Build charts, track user performance, and display market activity."
+---
+
+A good trading interface gives users clear visibility into their past actions and the broader market trends. The Rain SDK includes several read-only methods specifically for pulling historical data.
+
+Because the `Rain` class is stateless, you can fetch all of this information without requiring the user to connect a wallet. You can use these methods to build out the visual side of your application, from price charts to global leaderboards.
+
+## The Subgraph Requirement
+
+Unlike standard market queries that read directly from the blockchain or the Rain API, the analytics methods require querying indexed data.
+
+To use any of the history or analytics methods, you must provide a `subgraphUrl` when initializing your Rain client. If this configuration is missing, the SDK will throw an error when you try to call these methods.
+
+```typescript
+import { Rain } from '@rainprotocolsdk/sdk';
+
+// Analytics require the Subgraph URL to be configured
+const rain = new Rain({
+  environment: 'production',
+  subgraphUrl: 'https://...', // Required for transaction history / analytics
+  subgraphApiKey: 'your-api-key' // Optional, depending on your Subgraph setup
+});
+```
+
+## Market Price History
+
+Every time shares are bought or sold, the Automated Market Maker (AMM) adjusts the price. Traders look at these price movements to understand how the crowd's opinion has shifted over time.
+
+You can fetch this historical data using the `getPriceHistory` method.
+
+```typescript
+// Fetch historical price data for a specific market
+const priceHistory = await rain.getPriceHistory({
+  marketAddress: '0x...',
+  interval: '1h', // '5m' | '15m' | '1h' | '4h' | '1d'
+  option: 0,
+});
+```
+
+This method returns structured data (`PriceHistoryResult`) that you can easily plug into charting libraries to build candlestick or line graphs for your users.
+
+## Tracking Profit and Loss (PnL)
+
+Traders always want to know how their portfolio is performing. Instead of calculating this manually by indexing every past trade, you can let the SDK do the math.
+
+The `getPnL` method calculates a user's net profit or loss based on their historical activity.
+
+```typescript
+// Fetch the PnL for a specific user
+const userPnL = await rain.getPnL({
+  address: '0x...',
+  marketId: '...', // Optional - omit for aggregate PnL
+});
+```
+
+You can display this number prominently on a user's dashboard so they know exactly where they stand.
+
+## Building Leaderboards
+
+Competition is a great way to drive volume and engagement. If you want to gamify your application, you can pull the top performers directly from the protocol.
+
+The `getLeaderboard` method gives you a ranked list of the most profitable wallets.
+
+```typescript
+// Fetch the top traders on the protocol
+const topTraders = await rain.getLeaderboard({
+  timeframe: '7d', // '24h' | '7d' | '30d' | 'all'
+  sortBy: 'pnl', // 'pnl' | 'volume' | 'winRate'
+  first: 10,
+});
+```
+
+You can use this data to run weekly trading competitions, distribute rewards, or just let users brag about their rank.
+
+## Transaction and Trade History
+
+Sometimes users need to audit their past actions, or they want to see the recent trades made by others in a specific market. The SDK provides several different methods to pull these logs.
+
+For example, to decode a single transaction, you use the `getTransactionDetails` method and pass the specific transaction hash:
+
+```typescript
+const details = await rain.getTransactionDetails({ txHash: '0x...' });
+```
+
+You can also pull broader lists of activity using these methods:
+
+* `getTransactions({ address: '0x...', first: 20 })`: Fetch wallet transaction history.
+* `getMarketTransactions({ marketAddress: '0x...', first: 50 })`: Get all recent transactions for a specific market.
+* `getTradeHistory({ address: '0x...', marketAddress: '0x...' })`: Get a specific user's entire trade history.
+
+Using these methods, you can build a "Recent Activity" feed for your market pages, showing new buys and sells as they settle on-chain.
