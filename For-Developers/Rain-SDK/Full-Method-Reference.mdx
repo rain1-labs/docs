@@ -3,75 +3,63 @@ title: "Full Method Reference"
 description: "A complete directory of all available methods in the Rain SDK."
 ---
 
-A complete directory of all available methods in the Rain SDK.
-
 ## Rain Class
 
-| Method | Returns | Async |
-|---|---|---|
-| **Market Queries** | | |
-| `getPublicMarkets(params)` | `Market[]` | Yes |
-| `getMarketDetails(marketId)` | `MarketDetails` | Yes |
-| `getMarketPrices(marketId)` | `OptionPrice[]` | Yes |
-| `getMarketVolume(marketId)` | `MarketVolume` | Yes |
-| `getMarketLiquidity(marketId)` | `MarketLiquidity` | Yes |
-| `getMarketAddress(marketId)` | ``0x${string}`` | Yes |
-| `getMarketId(marketAddress)` | `string` | Yes |
-| `getProtocolStats()` | `ProtocolStats` | Yes |
-| **Transaction Builders** | | |
-| `buildApprovalTx(params)` | `RawTransaction` | No |
-| `buildCreateMarketTx(params)` | `RawTransaction[]` | Yes |
-| `buildBuyOptionRawTx(params)` | `RawTransaction` | No |
-| `buildLimitBuyOptionTx(params)` | `RawTransaction` | No |
-| `buildSellOptionTx(params)` | `RawTransaction` | No |
-| `buildCancelBuyOrdersTx(params)` | `RawTransaction` | No |
-| `buildCancelSellOrdersTx(params)` | `RawTransaction` | No |
-| `buildAddLiquidityTx(params)` | `RawTransaction` | No |
-| `buildClaimTx(params)` | `RawTransaction` | Yes |
-| `buildCloseMarketTx(params)` | `RawTransaction` | Yes |
-| `buildChooseWinnerTx(params)` | `RawTransaction` | Yes |
-| `buildResolveMarketTx(params)` | `RawTransaction[]` | Yes |
-| `buildDepositToSmartAccountTx(p)` | `RawTransaction` | No |
-| `buildWithdrawFromSmartAccountTx(p)` | `RawTransaction` | No |
-| **Positions** | | |
-| `getPositions(address)` | `PositionsResult` | Yes |
-| `getPositionByMarket(addr, id)` | `PositionByMarket` | Yes |
-| `getLPPosition(addr, id)` | `LPPosition` | Yes |
-| `getPortfolioValue(params)` | `PortfolioValue` | Yes |
-| **Accounts** | | |
-| `getSmartAccountBalance(params)` | `AccountBalanceResult` | Yes |
-| `getEOAFromSmartAccount(addr)` | ``0x${string}`` | Yes |
-| **Tx History** | | |
-| `getTransactions(params)` | `TransactionsResult` | Yes |
-| `getTransactionDetails(params)` | `TransactionDetails` | Yes |
-| `getMarketTransactions(params)` | `MarketTransactionsResult` | Yes |
-| `getTradeHistory(params)` | `TradeHistoryResult` | Yes |
-| **Analytics** | | |
-| `getPriceHistory(params)` | `PriceHistoryResult` | Yes |
-| `getPnL(params)` | `PnLResult` | Yes |
-| `getLeaderboard(params)` | `LeaderboardResult` | Yes |
-| **WebSocket** | | |
-| `subscribeToMarketEvents(params)` | `Unsubscribe` | No |
-| `subscribePriceUpdates(params)` | `Unsubscribe` | No |
-| `destroyWebSocket()` | `void` | Yes |
+| Method                               | Returns                    | Async |
+| ------------------------------------ | -------------------------- | ----- |
+| **Market Queries**                   |                            |       |
+| `getPublicMarkets(params)`           | `Market[]`                 | Yes   |
+| `getMarketDetails(marketId)`         | `MarketDetails`            | Yes   |
+| `getMarketPrices(marketId)`          | `OptionPrice[]`            | Yes   |
+| `getMarketVolume(marketId)`          | `MarketVolume`             | Yes   |
+| `getMarketLiquidity(marketId)`       | `MarketLiquidity`          | Yes   |
+| `getMarketAddress(marketId)`         | `0x${string}`              | Yes   |
+| `getMarketId(marketAddress)`         | `string`                   | Yes   |
+| `getProtocolStats()`                 | `ProtocolStats`            | Yes   |
+| **Transaction Builders**             |                            |       |
+| `buildApprovalTx(params)`            | `RawTransaction`           | No    |
+| `buildCreateMarketTx(params)`        | `RawTransaction[]`         | Yes   |
+| `buildBuyOptionRawTx(params)`        | `RawTransaction`           | No    |
+| `buildLimitBuyOptionTx(params)`      | `RawTransaction`           | No    |
+| `buildSellOptionTx(params)`          | `RawTransaction`           | No    |
+| `buildCancelBuyOrdersTx(params)`     | `RawTransaction`           | No    |
+| `buildCancelSellOrdersTx(params)`    | `RawTransaction`           | No    |
+| `buildAddLiquidityTx(params)`        | `RawTransaction`           | No    |
+| `buildClaimTx(params)`               | `RawTransaction`           | Yes   |
+| `buildCloseMarketTx(params)`         | `RawTransaction`           | Yes   |
+| `buildChooseWinnerTx(params)`        | `RawTransaction`           | Yes   |
+| `buildResolveMarketTx(params)`       | `RawTransaction[]`         | Yes   |
+| `buildDepositToSmartAccountTx(p)`    | `RawTransaction`           | No    |
+| `buildWithdrawFromSmartAccountTx(p)` | `RawTransaction`           | No    |
+| **Positions**                        |                            |       |
+| `getPositions(address)`              | `PositionsResult`          | Yes   |
+| `getPositionByMarket(addr, id)`      | `PositionByMarket`         | Yes   |
+| `getLPPosition(addr, id)`            | `LPPosition`               | Yes   |
+| `getPortfolioValue(params)`          | `PortfolioValue`           | Yes   |
+| **Accounts**                         |                            |       |
+| `getSmartAccountBalance(params)`     | `AccountBalanceResult`     | Yes   |
+| `getEOAFromSmartAccount(addr)`       | `0x${string}`              | Yes   |
+| **Tx History**                       |                            |       |
+| `getTransactions(params)`            | `TransactionsResult`       | Yes   |
+| `getTransactionDetails(params)`      | `TransactionDetails`       | Yes   |
+| `getMarketTransactions(params)`      | `MarketTransactionsResult` | Yes   |
+| `getTradeHistory(params)`            | `TradeHistoryResult`       | Yes   |
+| **Analytics**                        |                            |       |
+| `getPriceHistory(params)`            | `PriceHistoryResult`       | Yes   |
+| `getPnL(params)`                     | `PnLResult`                | Yes   |
+| `getLeaderboard(params)`             | `LeaderboardResult`        | Yes   |
+| **WebSocket**                        |                            |       |
+| `subscribeToMarketEvents(params)`    | `Unsubscribe`              | No    |
+| `subscribePriceUpdates(params)`      | `Unsubscribe`              | No    |
+| `destroyWebSocket()`                 | `void`                     | Yes   |
 
 ## RainAA Class
 
-| Method | Returns | Async |
-|---|---|---|
-| `connect()` | ``0x${string}`` | Yes |
-| `sendTransaction(tx)` | ``0x${string}`` (hash) | Yes |
-| `disconnect()` | `void` | No |
-| `.address` | ``0x${string}`` | No |
-| `.client` | Smart wallet client | No |
+| Method                | Returns              | Async |
+| --------------------- | -------------------- | ----- |
+| `connect()`           | `0x${string}`        | Yes   |
+| `sendTransaction(tx)` | `0x${string}` (hash) | Yes   |
+| `disconnect()`        | `void`               | No    |
+| `.address`            | `0x${string}`        | No    |
+| `.client`             | Smart wallet client  | No    |
 
----
-
-<CardGroup cols={2}>
-  <Card title="API Reference" icon="code" href="/api-reference">
-    Review the full details of the SDK's methods and parameters.
-  </Card>
-  <Card title="Local Development" icon="laptop-code" href="/local-development">
-    Learn how to build and test the Rain SDK locally.
-  </Card>
-</CardGroup>

@@ -3,11 +3,11 @@ title: "API Reference"
 description: "A comprehensive list of methods, parameters, and return types for the Rain SDK."
 ---
 
-| Environment | Link |
-|---|---|
-| Dev environment API swagger | [https://dev-api.rain.one/api-docs/](https://dev-api.rain.one/api-docs/) |
-| Staging environment API swagger | [https://stg-api.rain.one/api-docs/](https://stg-api.rain.one/api-docs/) |
-| Prod environment API swagger | [https://api.rain.one/api-docs/](https://api.rain.one/api-docs/) |
+| Environment                     | Link                               |
+| ------------------------------- | ---------------------------------- |
+| Dev environment API swagger     | https://dev-api.rain.one/api-docs/ |
+| Staging environment API swagger | https://stg-api.rain.one/api-docs/ |
+| Prod environment API swagger    | https://api.rain.one/api-docs/     |
 
 This reference details the available methods on the stateless `Rain` class and the stateful `RainAA` class. All transaction builders return an unsigned `RawTransaction` (`{ to, data, value? }`) that must be executed by a wallet or smart account.
 
@@ -436,14 +436,3 @@ interface MarketTradeEvent {
 type MarketStatus = 'Live' | 'New' | 'WaitingForResult' | 'UnderDispute' |
 'UnderAppeal' | 'ClosingSoon' | 'InReview' | 'InEvaluation' | 'Closed' | 'Trading';
 ```
-
----
-
-<CardGroup cols={2}>
-  <Card icon="play" href="/quickstart" title="Quick Start">
-    Learn how to initialize the SDK and fetch markets.
-  </Card>
-  <Card icon="gear" href="/configuration" title="Configuration">
-    Review environment settings and available data sources.
-  </Card>
-</CardGroup>

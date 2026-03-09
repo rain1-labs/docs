@@ -11,8 +11,8 @@ When you create a market, you define the question, set the possible options, and
 
 Before writing the code, you need to decide what kind of market you are building using the `isPublic` parameter.
 
-* **Public Markets:** These are open to anyone and are great for topics like sports, politics, or global events. The market can be resolved either by a specialized AI oracle or by the market creator.
-* **Private Markets:** These are designed for specific groups or topics and require a secret access code to join. The person who creates the pool acts as the resolver and decides the outcome.
+- **Public Markets:** These are open to anyone and are great for topics like sports, politics, or global events. The market can be resolved either by a specialized AI oracle or by the market creator.
+- **Private Markets:** These are designed for specific groups or topics and require a secret access code to join. The person who creates the pool acts as the resolver and decides the outcome.
 
 ## Building the Transaction
 
@@ -54,26 +54,17 @@ for (const tx of txs) {
 
 Here is what each input in the transaction builder means:
 
-* **Text Fields:** `marketQuestion`, `marketDescription`, and `marketTags` define how the market appears to users.
-* **Options:** `marketOptions` is an array of the possible outcomes. `no_of_options` is the numerical count of those choices.
-* **Permissions:** `isPublic` determines if the market is open or access-restricted. `isPublicPoolResolverAi` dictates if the AI oracle handles the resolution.
-* **Timing:** `startTime` and `endTime` are Unix timestamps defining when the market is active.
-* **Liquidity & Tokens:** `inputAmountWei` is your initial funding. The minimum requirement is $10 in the chosen token. `baseToken` is the contract address of the currency being used, and `tokenDecimals` ensures the math is calculated correctly.
-* **Initial Odds:** `barValues` sets the starting probability distribution for the options as a percentage. In this example, `[50, 50]` means both "Yes" and "No" start with a 50% probability.
+- **Text Fields:** `marketQuestion`, `marketDescription`, and `marketTags` define how the market appears to users.
+- **Options:** `marketOptions` is an array of the possible outcomes. `no_of_options` is the numerical count of those choices.
+- **Permissions:** `isPublic` determines if the market is open or access-restricted. `isPublicPoolResolverAi` dictates if the AI oracle handles the resolution.
+- **Timing:** `startTime` and `endTime` are Unix timestamps defining when the market is active.
+- **Liquidity & Tokens:** `inputAmountWei` is your initial funding. The minimum requirement is \$10 in the chosen token. `baseToken` is the contract address of the currency being used, and `tokenDecimals` ensures the math is calculated correctly.
+- **Initial Odds:** `barValues` sets the starting probability distribution for the options as a percentage. In this example, `[50, 50]` means both "Yes" and "No" start with a 50% probability.
 
 ## Managing the Market Lifecycle
 
 Creating the market is just the first step. To manage the conclusion of a market, the SDK provides these specific transaction builders:
 
-* `buildCloseMarketTx(params)`: Builds a raw transaction to officially close the market and halt trading.
-* `buildChooseWinnerTx(params)`: Builds a raw transaction to submit the winning outcome.
-* `buildResolveMarketTx(params)`: Builds a transaction to finalize the market state. Note that this method returns an array of raw transactions (`RawTransaction[]`).
-
-<CardGroup cols={2}>
-  <Card title="Trading Options" icon="arrow-right-arrow-left" href="/trading/orders">
-    Learn how to build buy and sell transactions for your new market.
-  </Card>
-  <Card title="Resolving Markets" icon="gavel" href="/markets/resolution">
-    Understand how markets are finalized and winners are chosen.
-  </Card>
-</CardGroup>
+- `buildCloseMarketTx(params)`: Builds a raw transaction to officially close the market and halt trading.
+- `buildChooseWinnerTx(params)`: Builds a raw transaction to submit the winning outcome.
+- `buildResolveMarketTx(params)`: Builds a transaction to finalize the market state. Note that this method returns an array of raw transactions (`RawTransaction[]`).
