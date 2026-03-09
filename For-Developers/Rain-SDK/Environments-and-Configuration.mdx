@@ -9,11 +9,11 @@ When initializing the Rain class, your configuration dictates which endpoints an
 
 The SDK automatically selects the correct Factory Address and API endpoint based on your chosen environment.
 
-| Environment | API Endpoint | Factory Address |
-| :--- | :--- | :--- |
-| development | dev-api.rain.one | 0x148DA7F2039B2B00633AC2ab566f59C8a4C86313 |
-| staging | stg-api.rain.one | 0x6109c9f28FE3Ad84c51368f7Ef2d487ca020c561 |
-| production | prod-api.rain.one | 0xccCB3C03D9355B01883779EF15C1Be09cf3623F1 |
+| Environment | API Endpoint      | Factory Address                            |
+| :---------- | :---------------- | :----------------------------------------- |
+| development | dev-api.rain.one  | 0x148DA7F2039B2B00633AC2ab566f59C8a4C86313 |
+| staging     | stg-api.rain.one  | 0x6109c9f28FE3Ad84c51368f7Ef2d487ca020c561 |
+| production  | prod-api.rain.one | 0xccCB3C03D9355B01883779EF15C1Be09cf3623F1 |
 
 You will also frequently interact with the standard base token, which is Arbitrum USDT (0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9) using 6 decimals.
 
@@ -36,10 +36,10 @@ const rain = new Rain({
 
 The SDK reads from three sources depending on the method:
 
-| Source | Used by | Config |
-| :--- | :--- | :--- |
-| Rain API | `getPublicMarkets`, `getMarketDetails` (partial), `buildClaimTx`, `buildCreateMarketTx` | `environment` (auto) |
-| On-chain | `getMarketPrices`, `getMarketVolume`, `getPositions`, all tx builders | `rpcUrl` (auto-selected) |
-| Subgraph | `getTransactions`, `getPriceHistory`, `getPnL`, `getLeaderboard` | `subgraphUrl` + `subgraphApiKey` |
+| Source   | Used by                                                                                       | Config                           |
+| :------- | :-------------------------------------------------------------------------------------------- | :------------------------------- |
+| Rain API | `getPublicMarkets`, `getMarketDetails` (partial), <br />`buildClaimTx`, `buildCreateMarketTx` | `environment` (auto)             |
+| On-chain | `getMarketPrices`, `getMarketVolume`, `getPositions`, <br />all tx builders                   | `rpcUrl` (auto-selected)         |
+| Subgraph | `getTransactions`, `getPriceHistory`, `getPnL`, <br />`getLeaderboard`                        | `subgraphUrl` + `subgraphApiKey` |
 
 Methods that require the subgraph will throw if `subgraphUrl` is not configured.
