@@ -34,33 +34,32 @@
           {
             "group": "Introduction",
             "pages": [
-              "Rain-Builders"
+              "For-Developers/Rain-Builders"
             ]
           },
           {
             "group": "Rain SDK",
             "pages": [
-              "Rain-SDK/Creating-a-Market",
-              "Rain-SDK/Trading-and-positions",
-              "Rain-SDK/Liquidity",
-              "Rain-SDK/Account-Abstraction",
-              "Rain-SDK/WebSockets-and-Live-Data",
-              "Rain-SDK/Analytics-and-History",
-              "Rain-SDK/Environments-and-Configuration",
-              "Rain-SDK/API-Reference",
-              "Rain-SDK/Full-Method-Reference"
+              "For-Developers/Rain-SDK/Creating-a-Market",
+              "For-Developers/Rain-SDK/Trading-and-positions",
+              "For-Developers/Rain-SDK/Liquidity",
+              "For-Developers/Rain-SDK/Account-Abstraction",
+              "For-Developers/Rain-SDK/WebSockets-and-Live-Data",
+              "For-Developers/Rain-SDK/Analytics-and-History",
+              "For-Developers/Rain-SDK/Environments-and-Configuration",
+              "For-Developers/Rain-SDK/API-Reference",
+              "For-Developers/Rain-SDK/Full-Method-Reference"
             ]
           },
           {
             "group": "RNG Layer",
             "pages": [
-              "RNG-Layer/Introduction-to-the-RNG-Layer",
-              "RNG-Layer/Installation-Initialization",
-              "RNG-Layer/Liquidity-class",
-              "RNG-Layer/Allowance-class",
-              "RNG-Layer/Recommended-Usage-Pattern",
-              "RNG-Layer/Local-Development-Setup",
-              "RNG-Layer/Versioning-Policy"
+              "For-Developers/RNG-Layer/Installation-Initialization",
+              "For-Developers/RNG-Layer/Liquidity-class",
+              "For-Developers/RNG-Layer/Allowance-class",
+              "For-Developers/RNG-Layer/Recommended-Usage-Pattern",
+              "For-Developers/RNG-Layer/Local-Development-Setup",
+              "For-Developers/RNG-Layer/Versioning-Policy"
             ]
           }
         ]
