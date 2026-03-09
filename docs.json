@@ -41,12 +41,12 @@
             "group": "Rain SDK",
             "pages": [
               "Rain-SDK/Creating-a-Market",
-              "Rain-SDK/Trading-Positions",
+              "Rain-SDK/Trading-and-positions",
               "Rain-SDK/Liquidity",
               "Rain-SDK/Account-Abstraction",
-              "Rain-SDK/WebSockets-Live-Data",
-              "Rain-SDK/Analytics-History",
-              "Rain-SDK/Environments-Configuration",
+              "Rain-SDK/WebSockets-and-Live-Data",
+              "Rain-SDK/Analytics-and-History",
+              "Rain-SDK/Environments-and-Configuration",
               "Rain-SDK/API-Reference",
               "Rain-SDK/Full-Method-Reference"
             ]
@@ -54,9 +54,10 @@
           {
             "group": "RNG Layer",
             "pages": [
-              "RNG-Layer/Installation-Initialization",
-              "RNG-Layer/Liquidity-Class",
-              "RNG-Layer/Allowance-Class",
+              "RNG-Layer/Introduction-to-the-RNG-Layer",
+              "RNG-Layer/Installation-Initialization"
+              "RNG-Layer/Liquidity-class",
+              "RNG-Layer/Allowance-class",
               "RNG-Layer/Recommended-Usage-Pattern",
               "RNG-Layer/Local-Development-Setup",
               "RNG-Layer/Versioning-Policy"
