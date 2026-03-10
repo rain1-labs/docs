@@ -31,11 +31,11 @@
     "tabs": [
       {
         "tab": "Help Center",
-        "pages": ["Help-Center/intro-page"],
         "groups": [
           {
             "group": "Setting up your account",
             "pages": [
+              "Help-Center/intro-page",
               "Help-Center/Settingupyouraccount",
               "Help-Center/Connectyourwallet",
               "Help-Center/DepositFunds",
