@@ -30,6 +30,7 @@
     "tabs": [
       {
         "tab": "Rain Help Center",
+        "url": "Help-Center/Settingupyouraccount",
         "groups": [
           {
             "group": "Help Center",
@@ -104,6 +105,7 @@
       },
       {
         "tab": "For Developers",
+        "url": "For-Developers/Rain-Builders",
         "groups": [
           {
             "group": "Introduction",
