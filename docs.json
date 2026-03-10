@@ -27,6 +27,7 @@
     ]
   },
   "navigation": {
+    "pages": ["index"],
     "tabs": [
       {
         "tab": "Help Center",
