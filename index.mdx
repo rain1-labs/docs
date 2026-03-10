@@ -1,129 +1,28 @@
 ---
-title: "Rain Builders - SDK Documentation"
-description: "Build complete prediction markets, trading applications, and custom integrations powered by Rain's automated protocol."
+title: Welcome to Rain Documentation
+description: Choose your path to get started with the Rain Protocol.
 ---
 
-The Rain SDK provides the TypeScript tools you need to interact with our protocol on Arbitrum One. You can use it to build, sign, and send transactions for everything from creating new markets to trading options and claiming winnings.
+Welcome to the Rain unified knowledge base!
 
-Whether you're building a custom frontend, routing trades for your users, or launching specialized pools, the SDK handles the technical execution. By integrating Rain, you plug directly into our automated market maker (AMM) liquidity for logic-based forecasts.
+Whether you are an end-user looking to participate in markets and claim rewards, or a developer aiming to build custom experiences on top of the Rain SDK, you will find everything you need right here.
 
-If you're building high-speed applications, you can tap into our RNG Layer. This system uses verifiable randomness through Chainlink VRF to power mathematically-driven risk scenarios. Instead of using the individual pools required for standard prediction markets, the RNG Layer draws from a single shared liquidity pool. This gives your users instant settlement for fast-paced, random markets across any application built on this layer.
-
-You can also give your users a simpler trading experience. The SDK includes an account abstraction module. This lets you manage smart accounts and sponsor gas fees, so your users can trade without worrying about network costs.
-
-Our Builder Program supports platforms that drive volume or create unique markets. You bring the users and the SDK provides the on-chain infrastructure.
-
-## What You Can Build
-
-The SDK gives you direct access to the protocol's core functions. Here is what you can do right away.
+Please select the portal that best fits your needs below:
 
 <CardGroup cols={2}>
-  <Card icon="plus" title="Permissionless Market Creation">
-    Launch public or private markets on any verifiable event. You define the options, set the resolution rules, and provide the initial liquidity in a single transaction. Rain is open for anyone to build on, so you never need our approval to start a new pool.
+  <Card
+    title="Rain Help Center"
+    icon="book-user"
+    href="/Help-Center/Settingupyouraccount"
+  >
+    Read step-by-step help articles to set up your account, understand market types, and learn how to use Rain as an end-user.
   </Card>
-  <Card icon="arrow-right-arrow-left" title="Trading & Liquidity">
-    Construct interfaces for your users to buy and sell outcome shares against the markets liquidity pool. You can also allow them to supply liquidity to specific markets. Liquidity providers earn a 1.2% fee from the trading volume their specific pool generates.
-  </Card>
-  <Card icon="gas-pump" title="Gas-Sponsored Execution">
-    Route transactions through the `RainAA` module. Rain uses Alchemy smart accounts to cover gas costs. Your users can trade and interact with the protocol without needing to hold native ETH in their wallets.
-  </Card>
-  <Card icon="bolt" title="Live Data Streams">
-    Connect to our WebSockets to pull live AMM pricing, order history, and market resolution events directly to your front end. This keeps your application in sync with the blockchain without constantly polling for updates.
+  <Card
+    title="For Developers"
+    icon="code"
+    href="/For-Developers/Rain-Builders"
+  >
+    Get detailed information about the Rain SDK and the RNG Layer to start building and integrating with Rain.
   </Card>
 </CardGroup>
-
-## SDK Architecture: The Two Pillars
-
-The SDK is split into two independent classes. This structure separates the logical transaction building from the actual execution.
-
-Here is how the responsibilities are divided between the two modules:
-
-<img
-  src="/images/SDKArchitectureDiagram-1.png"
-  alt="SDK Architecture Diagram 1"
-  title="SDK Architecture Diagram 1"
-  style={{ width:"57%" }}
-/>
-
-### The Execution Flow
-
-1. **Your Application:** The user interacts with your custom frontend.
-2. **The Rain Class:** Your application calls a method here to build an action. All transaction builders return an unsigned RawTransaction containing the to, data, and optional value fields.
-3. **The RainAA Class:** You pass that RawTransaction into this module. It manages the Alchemy smart accounts and signs the transaction via account abstraction, covering the network fees.
-4. **Arbitrum One:** The transaction settles on-chain, interacting with our Diamond Proxy pools and the specific AMM for that option.
-
-### The Rain Class (Stateless)
-
-Rain operates without state. It fetches data, builds unsigned transactions, and subscribes to events. It does not require a connected wallet.
-
-You use this class to query the protocol and construct actions. Because it returns a standard RawTransaction, you retain the freedom to decide how to execute it, whether you use RainAA, wagmi, ethers, or another custom provider.
-
-### The RainAA Class (Stateful Execution)
-
-RainAA maintains state. It handles the mechanics of account abstraction.
-
-Once your stateless class generates the transaction data, you pass it here. This module takes care of the execution. It sponsors gas costs so your users do not need native ETH to trade.
-
-## Quick Start
-
-The Rain SDK is designed to get you reading data and building transactions as quickly as possible. Because the core `Rain` class is stateless, you can start fetching markets and building trade payloads without requiring users to connect a wallet upfront.
-
-### Installation
-
-First, install the SDK into your project using your preferred package manager.
-
-```bash
-npm install @rainprotocolsdk/sdk
-npm install viem@^2.0.0  # Required peer dependency
 ```
-
-### Your First Trade Flow
-
-Here is a complete example of how you initialize the client, read active markets from the protocol, build a transaction to buy shares, and execute it.
-
-1. **Initialize (no wallet needed):** You set up the `Rain` class by pointing it to the `development` environment. This automatically configures the correct factory addresses and API endpoints.
-
-   ```typescript
-   const rain = new Rain({ environment: 'development' });
-   ```
-2. **Fetch Markets:** You query the protocol for a list of active markets. This pulls data directly from the Rain API.
-
-   ```typescript
-   const markets = await rain.getPublicMarkets({ limit: 10 });
-   ```
-3. **Build a Buy Transaction:** You define exactly _what_ you want to do. In this case, you are building the raw transaction data to buy \$10 worth of shares in 'Option 1'.
-
-   ```typescript
-   const rawTx = rain.buildBuyOptionRawTx({
-     marketContractAddress: '0x...',
-     selectedOption: 1n,
-     buyAmountInWei: 10_000_000n,  // 10 USDT (Arbitrum USDT uses 6 decimals)
-   });
-   ```
-4. **Execute:** The SDK hands you back an unsigned `RawTransaction` (`{ to, data, value }`). You then pass this payload to your user's standard wallet provider, or route it through the `RainAA` class for gasless execution.
-
-   ```typescript
-   await yourProvider.sendTransaction(rawTx);
-   ```
-
-## Essential Links & Next Steps
-
-Everything you need to build is publicly available. Explore our repositories to view the source code or check the typed methods.
-
-- **GitHub Repository:** [github.com/rain1-labs/rain-sdk](https://github.com/rain1-labs/rain-sdk)
-- **NPM Package:** [npmjs.com/package/@buidlrrr/rain-sdk](https://www.npmjs.com/package/@buidlrrr/rain-sdk)
-
-<CardGroup cols={2}>
-  <Card icon="store" href="/For-Developers/Rain-SDK/Creating-a-Market" title="Market Operations">
-    Learn how to build transactions to create markets, close markets, and choose winners.
-  </Card>
-  <Card icon="chart-line" href="/For-Developers/Rain-SDK/Trading-and-positions" title="Trading & Positions">
-    Learn how to build transactions for buying options, selling options, and reading portfolios.
-  </Card>
-  <Card icon="wallet" href="/For-Developers/Rain-SDK/Account-Abstraction" title="Account Abstraction">
-    Manage Alchemy smart accounts, connect users, and send transactions.
-  </Card>
-  <Card icon="bolt" href="/For-Developers/Rain-SDK/WebSockets-and-Live-Data" title="WebSockets & Data">
-    Subscribe to market events and stream live AMM pricing updates.
-  </Card>
-</CardGroup>
