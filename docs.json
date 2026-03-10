@@ -31,8 +31,13 @@
     "tabs": [
       {
         "tab": "Help Center",
-        "pages": ["Help-Center/intro-page"],
         "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "Help-Center/intro-page"
+            ]
+          },
           {
             "group": "Setting up your account",
             "pages": [
