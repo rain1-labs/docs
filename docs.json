@@ -33,9 +33,14 @@
         "tab": "Help Center",
         "groups": [
           {
+            "group": "Introduction",
+            "pages": [
+              "Help-Center/intro-page"
+            ]
+          },
+          {
             "group": "Setting up your account",
             "pages": [
-              "Help-Center/intro-page",
               "Help-Center/Settingupyouraccount",
               "Help-Center/Connectyourwallet",
               "Help-Center/DepositFunds",
