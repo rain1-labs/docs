@@ -26,126 +26,119 @@
       "/style.css"
     ]
   },
-  "tabs": [
-    {
-      "name": "Rain Help Center",
-      "url": "Help-Center"
-    },
-    {
-      "name": "For Developers",
-      "url": "For-Developers"
-    }
-  ],
-  "navigation": [
-    {
-      "tab": "Rain Help Center",
-      "group": "Setting up your account",
-      "pages": [
-        "Help-Center/Settingupyouraccount",
-        "Help-Center/Connectyourwallet",
-        "Help-Center/DepositFunds",
-        "Help-Center/Setupyourprofile",
-        "Help-Center/Cross-chainsupport",
-        "Help-Center/MyProfile-Overview"
-      ]
-    },
-    {
-      "tab": "Rain Help Center",
-      "group": "Market types",
-      "expanded": true,
-      "pages": [
-        "Help-Center/MarketTypes",
-        "Help-Center/Publicmarkets",
-        "Help-Center/Privatemarkets",
-        "rain-help-center/help-center/what-are-altcoin-markets"
-      ]
-    },
-    {
-      "tab": "Rain Help Center",
-      "group": "Participating in markets",
-      "expanded": true,
-      "pages": [
-        "Help-Center/Participatinginmarkets",
-        "Help-Center/Marketpageoverview",
-        "Help-Center/TradingOptions",
-        "Help-Center/Adding-liquidity-to-markets",
-        "Help-Center/FilingaDispute",
-        "Help-Center/HowtoClaimYourRewards"
-      ]
-    },
-    {
-      "tab": "Rain Help Center",
-      "group": "Creating a market",
-      "expanded": true,
-      "pages": [
-        "Help-Center/Creatingamarket",
-        "Help-Center/Drafting-a-good-market-question",
-        "Help-Center/HowtoLinkYourYouTubeLiveStream",
-        "Help-Center/Closingamarket",
-        "Help-Center/HowtoEndPredictionsinamarket"
-      ]
-    },
-    {
-      "tab": "Rain Help Center",
-      "group": "Raindrops",
-      "expanded": true,
-      "pages": [
-        "Help-Center/Rewards",
-        "Help-Center/RainsPointSystem",
-        "Help-Center/ReferralProgram"
-      ]
-    },
-    {
-      "tab": "Rain Help Center",
-      "group": "Fees & Withdrawals",
-      "pages": [
-        "Help-Center/PlatformFees",
-        "Help-Center/Howtowithdrawyourfunds"
-      ]
-    },
-    {
-      "tab": "Rain Help Center",
-      "group": "About the $RAIN token",
-      "expanded": true,
-      "pages": [
-        "Help-Center/AbouttheRAINtoken",
-        "Help-Center/Inflationdeflationmechanism",
-        "Help-Center/DAOgovernance"
-      ]
-    },
-    {
-      "tab": "For Developers",
-      "group": "Introduction",
-      "pages": [
-        "For-Developers/Rain-Builders"
-      ]
-    },
-    {
-      "tab": "For Developers",
-      "group": "Rain SDK",
-      "pages": [
-        "For-Developers/Rain-SDK/Creating-a-Market",
-        "For-Developers/Rain-SDK/Trading-and-positions",
-        "For-Developers/Rain-SDK/Liquidity",
-        "For-Developers/Rain-SDK/Account-Abstraction",
-        "For-Developers/Rain-SDK/WebSockets-and-Live-Data",
-        "For-Developers/Rain-SDK/Analytics-and-History",
-        "For-Developers/Rain-SDK/Environments-and-Configuration",
-        "For-Developers/Rain-SDK/API-Reference",
-        "For-Developers/Rain-SDK/Full-Method-Reference"
-      ]
-    },
-    {
-      "tab": "For Developers",
-      "group": "RNG Layer",
-      "pages": [
-        "For-Developers/RNG-Layer/Installation-Initialization",
-        "For-Developers/RNG-Layer/Liquidity-class",
-        "For-Developers/RNG-Layer/Allowance-class",
-        "For-Developers/RNG-Layer/Recommended-Usage-Pattern",
-        "For-Developers/RNG-Layer/Local-Development-Setup",
-        "For-Developers/RNG-Layer/Versioning-Policy"
-      ]
-    }
-  ]
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Rain Help Center",
+        "groups": [
+          {
+            "group": "Setting up your account",
+            "pages": [
+              "Help-Center/Settingupyouraccount",
+              "Help-Center/Connectyourwallet",
+              "Help-Center/DepositFunds",
+              "Help-Center/Setupyourprofile",
+              "Help-Center/Cross-chainsupport",
+              "Help-Center/MyProfile-Overview"
+            ]
+          },
+          {
+            "group": "Market types",
+            "expanded": true,
+            "pages": [
+              "Help-Center/MarketTypes",
+              "Help-Center/Publicmarkets",
+              "Help-Center/Privatemarkets",
+              "rain-help-center/help-center/what-are-altcoin-markets"
+            ]
+          },
+          {
+            "group": "Participating in markets",
+            "expanded": true,
+            "pages": [
+              "Help-Center/Participatinginmarkets",
+              "Help-Center/Marketpageoverview",
+              "Help-Center/TradingOptions",
+              "Help-Center/Adding-liquidity-to-markets",
+              "Help-Center/FilingaDispute",
+              "Help-Center/HowtoClaimYourRewards"
+            ]
+          },
+          {
+            "group": "Creating a market",
+            "expanded": true,
+            "pages": [
+              "Help-Center/Creatingamarket",
+              "Help-Center/Drafting-a-good-market-question",
+              "Help-Center/HowtoLinkYourYouTubeLiveStream",
+              "Help-Center/Closingamarket",
+              "Help-Center/HowtoEndPredictionsinamarket"
+            ]
+          },
+          {
+            "group": "Raindrops",
+            "expanded": true,
+            "pages": [
+              "Help-Center/Rewards",
+              "Help-Center/RainsPointSystem",
+              "Help-Center/ReferralProgram"
+            ]
+          },
+          {
+            "group": "Fees & Withdrawals",
+            "pages": [
+              "Help-Center/PlatformFees",
+              "Help-Center/Howtowithdrawyourfunds"
+            ]
+          },
+          {
+            "group": "About the $RAIN token",
+            "expanded": true,
+            "pages": [
+              "Help-Center/AbouttheRAINtoken",
+              "Help-Center/Inflationdeflationmechanism",
+              "Help-Center/DAOgovernance"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "For Developers",
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "For-Developers/Rain-Builders"
+            ]
+          },
+          {
+            "group": "Rain SDK",
+            "pages": [
+              "For-Developers/Rain-SDK/Creating-a-Market",
+              "For-Developers/Rain-SDK/Trading-and-positions",
+              "For-Developers/Rain-SDK/Liquidity",
+              "For-Developers/Rain-SDK/Account-Abstraction",
+              "For-Developers/Rain-SDK/WebSockets-and-Live-Data",
+              "For-Developers/Rain-SDK/Analytics-and-History",
+              "For-Developers/Rain-SDK/Environments-and-Configuration",
+              "For-Developers/Rain-SDK/API-Reference",
+              "For-Developers/Rain-SDK/Full-Method-Reference"
+            ]
+          },
+          {
+            "group": "RNG Layer",
+            "pages": [
+              "For-Developers/RNG-Layer/Introduction-to-the-RNG-Layer",
+              "For-Developers/RNG-Layer/Installation-Initialization",
+              "For-Developers/RNG-Layer/Liquidity-class",
+              "For-Developers/RNG-Layer/Allowance-class",
+              "For-Developers/RNG-Layer/Recommended-Usage-Pattern",
+              "For-Developers/RNG-Layer/Local-Development-Setup",
+              "For-Developers/RNG-Layer/Versioning-Policy"
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
