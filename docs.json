@@ -31,6 +31,7 @@
     "tabs": [
       {
         "tab": "Help Center",
+        "pages": ["Help-Center/intro-page"],
         "groups": [
           {
             "group": "Setting up your account",
