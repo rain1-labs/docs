@@ -1,0 +1,63 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "Rain Developers",
+  "theme": "mint",
+  "colors": {
+    "primary": "#212121",
+    "light": "#E5FE00",
+    "dark": "#212121"
+  },
+  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/Rain__Protocol",
+      "telegram": "https://t.me/+fAv7-KCqpis0NDI0",
+      "discord": "https://discord.com/invite/rainprotocol",
+      "youtube": "https://www.youtube.com/@Rain_Protocol",
+      "linkedin": "https://www.linkedin.com/company/rainprotocol"
+    }
+  },
+  "settings": {
+    "customScripts": [
+      "/style.css"
+    ]
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "For Developers",
+        "groups": [        
+          {
+            "group": "Rain SDK",
+            "pages": [
+              "For-Developers/Rain-SDK/Creating-a-Market",
+              "For-Developers/Rain-SDK/Trading-and-positions",
+              "For-Developers/Rain-SDK/Liquidity",
+              "For-Developers/Rain-SDK/Account-Abstraction",
+              "For-Developers/Rain-SDK/WebSockets-and-Live-Data",
+              "For-Developers/Rain-SDK/Analytics-and-History",
+              "For-Developers/Rain-SDK/Environments-and-Configuration",
+              "For-Developers/Rain-SDK/API-Reference",
+              "For-Developers/Rain-SDK/Full-Method-Reference"
+            ]
+          },
+          {
+            "group": "RNG Layer",
+            "pages": [
+              "For-Developers/RNG-Layer/Installation-Initialization",
+              "For-Developers/RNG-Layer/Liquidity-class",
+              "For-Developers/RNG-Layer/Allowance-class",
+              "For-Developers/RNG-Layer/Recommended-Usage-Pattern",
+              "For-Developers/RNG-Layer/Local-Development-Setup",
+              "For-Developers/RNG-Layer/Versioning-Policy"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
