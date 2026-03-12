@@ -1,7 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "Rain Protocol",
-  "basePath": "/sdk",
   "theme": "mint",
   "colors": {
     "primary": "#212121",
