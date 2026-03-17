@@ -1,0 +1,20 @@
+---
+title: Example Prompt
+description: See how to generate a complete trading script using a plain English prompt.
+---
+
+Once you install the SDK, your AI assistant is ready to build. You do not need to feed it extra documentation or explain how the protocol works.
+
+Here is an example of what you can ask your AI agent to create:
+
+```text
+Build a Node.js script that:
+1. Fetches the top 5 live markets sorted by liquidity
+2. For each market, gets the current option prices
+3. Finds any option priced below $0.10
+4. Buys $5 USDT worth of the cheapest option it finds
+
+Use @buidlrrr/rain-sdk. The wallet private key is in process.env.PRIVATE_KEY.
+```
+
+That is all it takes. The agent will read the `AGENTS.md` file, understand the exact transaction-building pattern the SDK requires, and produce working code. No additional context is needed.

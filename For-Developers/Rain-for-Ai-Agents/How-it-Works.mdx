@@ -1,0 +1,25 @@
+---
+title: How it Works
+description: Learn how AI assistants read the Rain SDK to write your integration code automatically.
+---
+
+The [Rain SDK](https://www.npmjs.com/package/@buidlrrr/rain-sdk) ships with files formatted specifically for AI coding assistants (like Claude Code, Cursor, Copilot, etc.). You don't have to guide your AI through our documentation or copy and paste code snippets. The package includes everything the agent needs to understand the protocol.
+
+## The AGENTS.md File
+
+The core of this integration is a machine-readable reference file called [AGENTS.md](https://unpkg.com/@buidlrrr/rain-sdk@1.0.3/AGENTS.md), which is included in the `@buidlrrr/rain-sdk` npm package.
+
+This file acts as a direct manual for your AI. It contains every method signature, return type, and working code example required to use the SDK correctly.
+
+When your AI agent reads this file in your project directory, it instantly understands:
+
+- **Setup:** How to initialize the base Rain client and RainAA for account abstraction and gasless transactions.
+- **Methods:** Every available function and its exact parameters.
+- **Formatting:** Return types and necessary data formats, including price scales, token decimals, and index conventions.
+- **Workflows:** Common smart contract patterns, such as the approve-then-buy sequence, market creation, and resolution flows.
+
+## Zero Setup Required
+
+You don't need to configure anything to make this work. If you have the `@buidlrrr/rain-sdk` package installed in your project, the file is already sitting at `node_modules/@buidlrrr/rain-sdk/AGENTS.md`.
+
+Most modern AI agents will pick this up automatically when scanning your directory. Once they see it, they know exactly how to wire up your prediction market application.

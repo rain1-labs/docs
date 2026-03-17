@@ -133,6 +133,15 @@
             ]
           },
           {
+            "group": "Rain for AI Agents",
+            "pages": [
+              "For-Developers/Rain-for-Ai-Agents/Built-for-AI-Agents",
+              "For-Developers/Rain-for-Ai-Agents/How-it-Works",
+              "For-Developers/Rain-for-Ai-Agents/Claude-Code-Skill",
+              "For-Developers/Rain-for-Ai-Agents/Example-Prompt"
+            ]
+          },
+          {
             "group": "RNG Layer",
             "pages": [
               "For-Developers/RNG-Layer/Introduction-to-the-RNG-Layer",
