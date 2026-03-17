@@ -5,6 +5,8 @@ description: "Build complete prediction markets, trading applications, and custo
 
 The Rain SDK provides the TypeScript tools you need to interact with our protocol on Arbitrum One. You can use it to build, sign, and send transactions for everything from creating new markets to trading options and claiming winnings.
 
+We designed this SDK specifically for AI coding assistants. Your AI agent can read our provided files, understand the transaction patterns, and write the integration code for you. If you plan to build your project using an AI assistant, you can skip the manual documentation and head directly to the [**Rain for AI Agents**](/For-Developers/Rain-for-Ai-Agents/Built-for-AI-Agents) section.
+
 Whether you're building a custom frontend, routing trades for your users, or launching specialized pools, the SDK handles the technical execution. By integrating Rain, you plug directly into our automated market maker (AMM) liquidity for logic-based forecasts.
 
 If you're building high-speed applications, you can tap into our RNG Layer. This system uses verifiable randomness through Chainlink VRF to power mathematically-driven risk scenarios. Instead of using the individual pools required for standard prediction markets, the RNG Layer draws from a single shared liquidity pool. This gives your users instant settlement for fast-paced, random markets across any application built on this layer.
@@ -66,6 +68,11 @@ Once your stateless class generates the transaction data, you pass it here. This
 
 ## Quick Start
 
+### Building with AI?
+
+The Rain SDK is formatted specifically for AI agents. If you are using tools like Claude Code, Cursor, or Copilot, you do not need to read through the manual instructions below. Head straight to the [**Rain for AI Agents**](/For-Developers/Rain-for-Ai-Agents/Built-for-AI-Agents) section to see how your AI can automatically write your setup and integration code.
+
+\
 The Rain SDK is designed to get you reading data and building transactions as quickly as possible. Because the core `Rain` class is stateless, you can start fetching markets and building trade payloads without requiring users to connect a wallet upfront.
 
 ### Installation
@@ -114,16 +121,16 @@ Everything you need to build is publicly available. Explore our repositories to 
 - **NPM Package:** [npmjs.com/package/@buidlrrr/rain-sdk](https://www.npmjs.com/package/@buidlrrr/rain-sdk)
 
 <CardGroup cols={2}>
-  <Card icon="store" href="/markets/creation" title="Market Operations">
+  <Card icon="store" href="/Rain-SDK/Creating-a-Market" title="Market Operations">
     Learn how to build transactions to create markets, close markets, and choose winners.
   </Card>
-  <Card icon="chart-line" href="/trading/orders" title="Trading & Positions">
+  <Card icon="chart-line" href="/Rain-SDK/Trading-and-positions" title="Trading & Positions">
     Learn how to build transactions for buying options, selling options, and reading portfolios.
   </Card>
-  <Card icon="wallet" href="/integration/rain-aa" title="Account Abstraction">
+  <Card icon="wallet" href="/Rain-SDK/Account-Abstraction" title="Account Abstraction">
     Manage Alchemy smart accounts, connect users, and send transactions.
   </Card>
-  <Card icon="bolt" href="/integration/websockets" title="WebSockets & Data">
+  <Card icon="bolt" href="/Rain-SDK/WebSockets-and-Live-Data" title="WebSockets & Data">
     Subscribe to market events and stream live AMM pricing updates.
   </Card>
 </CardGroup>
