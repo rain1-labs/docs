@@ -1,14 +1,16 @@
 ---
-title: "Claude Code Skill"
-description: "Install our custom skill to give Claude complete knowledge of the Rain SDK, letting you build integrations using simple text prompts."
+title: "OpenClaw Skills"
+description: "Install our custom skill to give OpenClaw complete knowledge of the Rain SDK, letting you build integrations using simple text prompts."
 ---
 
-If you are using Claude Code, we offer an installable skill that gives your AI assistant deep context on the Rain SDK. This skill activates automatically whenever you work with Rain in your project. You no longer have to paste documentation snippets or spend time explaining how the API works.
+If you are using OpenClaw, we offer installable skills that give it deep context on the Rain SDK. These skills will activate automatically whenever you work with Rain in your project. You no longer have to paste documentation snippets or spend time explaining how the API works.
 
-You can install it directly using this command:
+You can install the skills directly using these commands:
 
 ```bash
-claude install-skill https://github.com/rain1-labs/rain-sdk
+npx skills add rain1-labs/rain-sdk@rain-create-market
+npx skills add rain1-labs/rain-sdk@rain-trade
+npx skills add rain1-labs/rain-sdk@rain-data
 ```
 
-Once installed, Claude understands the entire SDK API. You can just type a plain English prompt, and your agent will write the exact integration code you need to connect your application to the protocol.
+Once installed, OpenClaw understands the entire SDK. You can just type a plain English prompt, and your agent will write the exact integration code you need to connect your application to the protocol.
