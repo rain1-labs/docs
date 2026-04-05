@@ -1,0 +1,84 @@
+---
+title: "Disputes & Appeals"
+description: "Integrate the methods that allow your users to challenge market outcomes and escalate contested resolutions."
+---
+
+Sometimes the initial resolution of a market doesn't feel right. To keep things fair and accurate, Rain uses a multi-layered system to challenge outcomes. You can build transactions to open disputes or escalate them through appeals. This ensures that even if an initial result is contested, the final settlement is fair.
+
+- `buildCreateDisputeTx`: Use this to challenge a resolver's decision. If the market uses USDT or RAIN, the SDK automatically checks for and includes an approval transaction if your allowance is too low.
+- `buildCreateAppealTx`: If an initial dispute doesn't settle the matter, this method escalates the case to a higher-level resolution. It follows the same pattern as the dispute builder.
+- `buildExtendTimeTx`: Sometimes a case needs more time for review. This method fetches a signed timestamp from the Rain backend to push back the market's oracle timer. Note that this requires an authenticated session via `login()`.
+
+## Opening a Dispute - buildCreateDisputeTx
+
+If a market participant believes the initial result of a market is incorrect, they can challenge it by opening a dispute. In this stage, an AI judge reviews the available data to provide an objective resolution. The `buildCreateDisputeTx` method prepares the transactions needed to start this process. The protocol reads the required dispute fee directly from the market contract. If the market uses USDT or RAIN, the SDK automatically checks your allowance and includes an approval transaction if you need one.
+
+```typescript
+const txs = await rain.buildCreateDisputeTx({
+  marketId: "664f1a2b...",
+  walletAddress: "0xYourWallet...",
+  usdtTokenAddress: "0xFd086bC7...", // required for USDT markets
+  rainTokenAddress: "0xRainToken...", // required for RAIN markets
+});
+
+// txs[0] may be an ERC-20 approval (if allowance is insufficient)
+// txs[last] is the openDispute call on the market contract
+for (const tx of txs) {
+  await walletClient.sendTransaction(tx);
+}
+```
+
+### Parameters (CreateDisputeTxParams)
+
+| Parameter | Type | Required | Description |
+| :-- | :-- | :-- | :-- |
+| `marketId` | `string` | Yes | The market's ID (from getPublicMarkets or getMarketById) |
+| `walletAddress` | ``0x${string}`` | Yes | The wallet address opening the dispute |
+| `usdtTokenAddress` | ``0x${string}`` | Conditional | Required if the market uses USDT as its base token |
+| `rainTokenAddress` | ``0x${string}`` | Conditional | Required if the market uses RAIN as its base token |
+
+**Returns:** `Promise<RawTransaction[]>`, one or two transactions (approval \+ dispute).
+
+## Escalating with an Appeal - buildCreateAppealTx
+
+If an initial dispute doesn't settle the matter, you can escalate the case to a higher-level resolution. While the initial dispute might be handled by automated systems, the appeal process brings in decentralized human oracles to provide a final, manual review. Use `buildCreateAppealTx` to handle this. It follows the same pattern as the dispute builder, including potential token approvals.
+
+```typescript
+const txs = await rain.buildCreateAppealTx({
+  marketId: "664f1a2b...",
+  walletAddress: "0xYourWallet...",
+  usdtTokenAddress: "0xFd086bC7...",
+});
+
+for (const tx of txs) {
+  await walletClient.sendTransaction(tx);
+}
+```
+
+### Parameters (CreateAppealTxParams)
+
+Same as CreateDisputeTxParams.
+
+## Requesting a Time Extension - buildExtendTimeTx
+
+Sometimes a complex case needs a bit more breathing room for the oracles to review the evidence. The `buildExtendTimeTx` method allows you to push back the market's oracle timer. This method fetches a signed timestamp from the Rain backend to update the on-chain contract. Because this interacts with our backend systems, you'll need to provide an `accessToken` from a valid `login()` session (see [Authentication](/For-Developers/Rain-SDK/Authentication)).
+
+```typescript
+const tx = await rain.buildExtendTimeTx({
+  marketContractAddress: "0xMarketContract...",
+  walletAddress: "0xYourWallet...",
+  accessToken: "eyJhbGciOi...",
+});
+
+await walletClient.sendTransaction(tx);
+```
+
+### Parameters (ExtendTimeTxParams)
+
+| Parameter | Type | Required | Description |
+| :-- | :-- | :-- | :-- |
+| `marketContractAddress` | ``0x${string}`` | Yes | The market's on-chain contract address |
+| `walletAddress` | ``0x${string}`` | Yes | The wallet requesting the extension |
+| `accessToken` | `string` | Yes | JWT from [rain.login()](/For-Developers/Rain-SDK/Authentication) |
+
+**Returns:** `Promise<RawTransaction>`, a single transaction targeting the oracle contract's extendTime function.

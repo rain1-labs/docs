@@ -115,7 +115,8 @@
           {
             "group": "Introduction",
             "pages": [
-              "For-Developers/Rain-Builders"
+              "For-Developers/Rain-Builders",
+              "For-Developers/changelog"
             ]
           },
           {
@@ -123,7 +124,9 @@
             "pages": [
               "For-Developers/Rain-SDK/Creating-a-Market",
               "For-Developers/Rain-SDK/Trading-and-positions",
+              "For-Developers/Rain-SDK/Disputes-Appeals",
               "For-Developers/Rain-SDK/Liquidity",
+              "For-Developers/Rain-SDK/Authentication",
               "For-Developers/Rain-SDK/Account-Abstraction",
               "For-Developers/Rain-SDK/WebSockets-and-Live-Data",
               "For-Developers/Rain-SDK/Analytics-and-History",

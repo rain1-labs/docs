@@ -38,10 +38,102 @@ const unsubscribe = rain.subscribeToMarketEvents({
 When listening to market events, you can filter for specific actions using the `eventNames` array. Here are the events emitted by the protocol:
 
 | Category | Events |
-| :--- | :--- |
-| **Trades** | `EnterOption`, `PlaceBuyOrder`, `PlaceSellOrder`,`ExecuteBuyOrder`,<br/>`ExecuteSellOrder`,`CancelBuyOrder`, `CancelSellOrder` |
-| **Price sync** | `Sync` - AMM reserve rebalance<br/>(emitted once per option pair per trade) |
+| :-- | :-- |
+| **Trades** | `EnterOption`, `PlaceBuyOrder`, `PlaceSellOrder`,`ExecuteBuyOrder`,<br />`ExecuteSellOrder`,`CancelBuyOrder`, `CancelSellOrder` |
+| **Price sync** | `Sync` - AMM reserve rebalance<br />(emitted once per option pair per trade) |
 | **Lifecycle** | `Claim`, `ChooseWinner`, `ClosePool` |
+
+## Real-time Updates with RainSocket
+
+The `RainSocket` class is built for high-performance frontends that need to react to market changes instantly. It provides a typed WebSocket connection so you can listen for specific events without polling the blockchain. It wraps socket.io and exposes typed event subscriptions.
+
+### Configuring the Connection
+
+To get started, initialize the socket with your environment. The constructor accepts `RainCoreConfig` (the same as the main `Rain` class), though currently only the `environment` parameter is used to route the connection.
+
+```typescript
+import { RainSocket } from '@buidlrrr/rain-sdk';
+
+const socket = new RainSocket({ environment: 'production' });
+
+socket.onConnect(() => {
+  console.log('Connected to Rain WebSocket');
+});
+```
+
+### Available Events
+
+| Method | Event | Callback Data |
+| :-- | :-- | :-- |
+| `onEnterOption(marketId, cb)` | User buys into an option | `EnterOptionEventData` |
+| `onOrderCreated(marketId, cb)` | New limit order placed | `OrderEventData` |
+| `onOrderCancelled(marketId, cb)` | Order cancelled | `OrderEventData` |
+| `onOrderFilled(marketId, cb)` | Order partially/fully filled | `OrderFilledEventData` |
+| `onDisputeOpened(marketId, cb)` | Dispute opened on a market | `DisputeOpenedEventData` |
+| `onAppealWinner(marketId, cb)` | Appeal winner finalized | `AppealWinnerEventData` |
+| `onClaimReward(marketId, userId, cb)` | User's claim confirmed | `ClaimRewardEventData` |
+
+### Example: Live trade feed
+
+```typescript
+const socket = new RainSocket({ environment: 'production' });
+const marketId = "664f1a2b...";
+
+// Subscribe to trades
+const unsubscribe = socket.onEnterOption(marketId, (data) => {
+  for (const inv of data.investments) {
+    console.log(`Option ${inv.optionName}: ${inv.amount} wei invested`);
+  }
+});
+
+// Subscribe to limit orders
+const unsubOrders = socket.onOrderCreated(marketId, (data) => {
+  console.log(`New ${data.order.orderType} order at ${data.order.pricePerShare}`);
+});
+
+// Later: clean up
+unsubscribe();
+unsubOrders();
+socket.disconnect();
+```
+
+### Key Types
+
+```typescript
+interface EnterOptionEventData {
+  poolId: string;
+  investments: {
+    choiceIndex: number;
+    amount: string; // raw wei
+    optionName?: string;
+  }[];
+  totalInvestmentWei: string;
+  tokenDecimals: number;
+}
+
+interface OrderEventData {
+  poolId: string;
+  order: {
+    _id: string;
+    orderType: 'buy' | 'sell';
+    option: number;
+    optionName?: string;
+    pricePerShare: string;
+    quantity: string; // raw wei
+    createdAt: string;
+  };
+  tokenDecimals: number;
+}
+
+interface DisputeOpenedEventData {
+  poolId: string;
+  isDisputed: boolean;
+  isAiResolver: boolean;
+  status: string;
+  disputeData: any;
+  winnerDecidedBy: string;
+}
+```
 
 ## Live Price Updates
 
@@ -73,3 +165,4 @@ unsubscribe();
 
 // Cleanup the entire WebSocket connection
 await rain.destroyWebSocket();
+```

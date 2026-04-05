@@ -1,6 +1,6 @@
 ---
-title: "Trading & Positions"
-description: "Build interfaces for buying shares, tracking portfolios, and claiming winnings."
+title: 'Trading & Positions'
+description: 'Build interfaces for buying shares, tracking portfolios, and claiming winnings.'
 ---
 
 Once a market is live, participants can start taking positions. The Rain SDK allows you to construct trading actions and query user data directly from the protocol.
@@ -10,7 +10,6 @@ Because trades happen against our Automated Market Maker (AMM), your users get i
 ## Buying Options
 
 When a user buys an option, they are purchasing shares of a specific outcome. The price of these shares is determined by the AMM based on the current pool ratios.
-
 Here is how you build a standard market order to buy shares.
 
 ```typescript
@@ -73,11 +72,39 @@ const cancelTx = rain.buildCancelBuyOrdersTx({
 
 Note: You can use `buildCancelSellOrdersTx` following the exact same structure to cancel open sell orders.
 
+### Batch Cancellations
+
+Manually canceling dozens of orders one by one is a headache. We've added a helper to clear the deck in one go. The `buildCancelAllOpenOrdersTx` method identifies every open order a wallet has on a specific market and groups them into the most efficient set of transactions possible. Since this checks private order books, you'll need to provide an `accessToken`.
+
+```typescript
+const txs = await rain.buildCancelAllOpenOrdersTx({
+  marketId: "664f1a2b...",
+  marketContractAddress: "0xMarketContract...",
+  walletAddress: "0xYourWallet...",
+  accessToken: "eyJhbGciOi...",
+});
+
+if (txs.length === 0) {
+  console.log("No open orders to cancel");
+} else {
+  for (const tx of txs) {
+    await walletClient.sendTransaction(tx);
+  }
+}
+```
+
+#### Parameters (CancelAllOpenOrdersTxParams)
+
+| Parameter | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `marketId` | `string` | Yes | The market's ID |
+| `marketContractAddress` | `` `0x${string}` `` | Yes | The market's on-chain contract address |
+| `walletAddress` | `` `0x${string}` `` | Yes | The wallet whose orders to cancel |
+| `accessToken` | `string` | Yes | JWT from rain.login() |
+
 ## Reading Positions & Portfolio Value
 
-A great trading interface needs clear data. The SDK gives you several read-only methods to fetch a user's current holdings without requiring them to connect a wallet.
-
-You simply pass in the user's public address.
+A great trading interface needs clear data. The SDK gives you several read-only methods to fetch a user's current holdings without requiring them to connect a wallet. You simply pass in the user's public address.
 
 ```typescript
 // Fetch all open positions for a specific user
@@ -96,6 +123,84 @@ const portfolioValue = await rain.getPortfolioValue({
 ```
 
 These queries return structured data that you can use to populate leaderboards, user dashboards, and historical performance charts.
+
+## Advanced Portfolio & Market Lookups
+
+These methods help you build richer interfaces by pulling historical participation and specific market details.
+
+### User Investment History
+
+The `getUserInvestments` method returns a full record of every market a user has touched. It includes their total stake and the specific options they held. You can use the `status` filter to separate active trades from settled history. This requires an `accessToken` from `login()`.
+
+```typescript
+const investments = await rain.getUserInvestments({
+  walletAddress: "0xYourWallet...",
+  accessToken: "eyJhbGciOi...",
+  status: "Live",
+  limit: 20,
+  offset: 0,
+});
+```
+
+#### Parameters (GetUserInvestmentsParams)
+
+| Parameter | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `walletAddress` | `string` | Yes | The wallet address to query |
+| `accessToken` | `string` | Yes | JWT from rain.login() |
+| `status` | `MarketStatus` | No | Filter by market status ('Live', 'Closed', 'UnderDispute', etc.) |
+| `limit` | `number` | No | Max results to return |
+| `offset` | `number` | No | Number of results to skip (for pagination) |
+
+**Returns:** `Promise<UserInvestment[]>`
+
+**Key Types**
+
+```typescript
+interface UserInvestment {
+  _id: string;
+  poolId: string;
+  walletAddress: string;
+  investment: any[];
+  totalInvestment: string;
+  pool: Record<string, any>;  // embedded market data
+}
+```
+
+`MarketStatus` values: `'Live' | 'New' | 'WaitingForResult' | 'UnderDispute' | 'UnderAppeal' | 'ClosingSoon' | 'InReview' | 'InEvaluation' | 'Closed' | 'Trading'`
+
+### Fetching a Single Market
+
+If you need to refresh the data for a specific market, `getMarketById` returns the full market object including its title, current status, and metadata.
+
+```typescript
+const market = await rain.getMarketById({
+  marketId: "664f1a2b...",
+});
+
+console.log(market.title, market.status);
+```
+
+#### Parameters (GetMarketByIdParams)
+
+| Parameter | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `marketId` | `string` | Yes | The market's ID |
+
+**Returns:** `Promise<Market>`
+
+**Key Types**
+
+```typescript
+interface Market {
+  id: string;
+  title: string;
+  totalVolume: string;
+  status: MarketStatus;
+  poolOwnerWalletAddress?: string;
+  contractAddress?: string;
+}
+```
 
 ## Claiming Winnings
 

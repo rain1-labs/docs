@@ -1,0 +1,45 @@
+---
+title: 'Authentication'
+description: 'Establish an authenticated session to securely interact with the Rain backend for advanced features.'
+---
+
+While basic on-chain reads are public, certain advanced features like batch cancellations or time extensions require your app to talk to the Rain backend. To do this safely, you need to establish an authenticated session. The `login` method uses a simple two-step process. Have the user sign their lowercased wallet address, and the SDK will exchange that signature for a JWT access token.
+
+```typescript
+// 1. Sign the message
+const message = walletAddress.toLowerCase();
+const signature = await walletClient.signMessage({ message });
+
+// 2. Authenticate
+const { accessToken, userId } = await rain.login({
+  signature,
+  walletAddress,
+  smartWalletAddress: smartAccount, // from RainAA.connect()
+});
+
+// 3. Use the token in authenticated calls
+const txs = await rain.buildCancelAllOpenOrdersTx({
+  marketId: "...",
+  marketContractAddress: "0x...",
+  walletAddress,
+  accessToken,
+});
+```
+
+### Parameters (LoginParams)
+
+| Parameter | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `signature` | `string` | Yes | personal_sign of the lowercased wallet address |
+| `walletAddress` | `string` | Yes | EOA wallet address |
+| `smartWalletAddress` | `string` | Yes | Smart account address (from RainAA.connect()) |
+| `referredBy` | `string` | No | Optional referral code |
+
+**Returns:** `Promise<LoginResult>`
+
+```typescript
+interface LoginResult {
+  accessToken: string; // JWT, pass to authenticated SDK methods
+  userId: string; // Backend user ID
+}
+```
