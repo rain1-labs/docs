@@ -1,6 +1,6 @@
 ---
-title: 'Trading & Positions'
-description: 'Build interfaces for buying shares, tracking portfolios, and claiming winnings.'
+title: "Trading & Positions"
+description: "Build interfaces for buying shares, tracking portfolios, and claiming winnings."
 ---
 
 Once a market is live, participants can start taking positions. The Rain SDK allows you to construct trading actions and query user data directly from the protocol.
@@ -9,8 +9,7 @@ Because trades happen against our Automated Market Maker (AMM), your users get i
 
 ## Buying Options
 
-When a user buys an option, they are purchasing shares of a specific outcome. The price of these shares is determined by the AMM based on the current pool ratios.
-Here is how you build a standard market order to buy shares.
+When a user buys an option, they are purchasing shares of a specific outcome. The price of these shares is determined by the AMM based on the current pool ratios. Here is how you build a standard market order to buy shares.
 
 ```typescript
 import { Rain } from '@rainprotocolsdk/sdk';
@@ -96,10 +95,10 @@ if (txs.length === 0) {
 #### Parameters (CancelAllOpenOrdersTxParams)
 
 | Parameter | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
+| :-- | :-- | :-- | :-- |
 | `marketId` | `string` | Yes | The market's ID |
-| `marketContractAddress` | `` `0x${string}` `` | Yes | The market's on-chain contract address |
-| `walletAddress` | `` `0x${string}` `` | Yes | The wallet whose orders to cancel |
+| `marketContractAddress` | `0x${string}` | Yes | The market's on-chain contract address |
+| `walletAddress` | `0x${string}` | Yes | The wallet whose orders to cancel |
 | `accessToken` | `string` | Yes | JWT from rain.login() |
 
 ## Reading Positions & Portfolio Value
@@ -145,7 +144,7 @@ const investments = await rain.getUserInvestments({
 #### Parameters (GetUserInvestmentsParams)
 
 | Parameter | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
+| :-- | :-- | :-- | :-- |
 | `walletAddress` | `string` | Yes | The wallet address to query |
 | `accessToken` | `string` | Yes | JWT from rain.login() |
 | `status` | `MarketStatus` | No | Filter by market status ('Live', 'Closed', 'UnderDispute', etc.) |
@@ -173,9 +172,12 @@ interface UserInvestment {
 
 If you need to refresh the data for a specific market, `getMarketById` returns the full market object including its title, current status, and metadata.
 
+You can also pass an optional `cache` parameter to this method. This allows you to bypass the browser's HTTP cache by passing `cache: 'no-store'`, or any other valid `RequestCache` value. This is helpful if the API headers cause stale reads, such as when a market still shows a `Live` status even though it has already closed. If you leave this parameter out, the default behavior remains the same.
+
 ```typescript
 const market = await rain.getMarketById({
   marketId: "664f1a2b...",
+  cache: 'no-store' // Optional: bypass browser cache
 });
 
 console.log(market.title, market.status);
@@ -184,8 +186,9 @@ console.log(market.title, market.status);
 #### Parameters (GetMarketByIdParams)
 
 | Parameter | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
+| :-- | :-- | :-- | :-- |
 | `marketId` | `string` | Yes | The market's ID |
+| Cache | `RequestCache` | No | Bypasses the browser's HTTP cache to ensure you get the most recent data. |
 
 **Returns:** `Promise<Market>`
 
