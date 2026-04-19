@@ -3,11 +3,11 @@ title: "API Reference"
 description: "A comprehensive list of methods, parameters, and return types for the Rain SDK."
 ---
 
-| Environment                     | Link                               |
-| ------------------------------- | ---------------------------------- |
-| Dev environment API swagger     | https://dev-api.rain.one/api-docs/ |
-| Staging environment API swagger | https://stg-api.rain.one/api-docs/ |
-| Prod environment API swagger    | https://api.rain.one/api-docs/     |
+| Environment | Link |
+| --- | --- |
+| Dev environment API swagger | [https://dev-api.rain.one/api-docs/](https://dev-api.rain.one/api-docs/) |
+| Staging environment API swagger | [https://stg-api.rain.one/api-docs/](https://stg-api.rain.one/api-docs/) |
+| Prod environment API swagger | [https://api.rain.one/api-docs/](https://api.rain.one/api-docs/) |
 
 This reference details the available methods on the stateless `Rain` class and the stateful `RainAA` class. All transaction builders return an unsigned `RawTransaction` (`{ to, data, value? }`) that must be executed by a wallet or smart account.
 
@@ -106,12 +106,16 @@ Synchronous methods that construct the `to`, `data`, and `value` payloads for bl
 
 ### Approvals
 
+`Rain.buildApprovalTx` requires an explicit `amount` for every call. We don't use infinite approvals because they bypass spending-cap enforcement in ERC-4337 session-key policies. This is especially relevant for setups like Alchemy Modular Account v2's `erc20-token-transfer` permission, where precise caps prevent falling back on weaker permissions that lack spend tracking.
+
+You'll need to pass the exact required amount as a `bigint`, and any values `<= 0n` will be rejected. For internal SDK methods like `buildCreateMarketTx`, `buildDisputeTx`, or `buildAppealTx`, the protocol handles these requirements automatically.
+
 ```typescript
 // buildApprovalTx(params) — ERC20 approve
 const tx = rain.buildApprovalTx({
   tokenAddress: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9', // USDT
   spender: '0x...', // market contract address
-  amount: 100_000_000n, // Optional — defaults to max uint256
+  amount: 100_000_000n, // Required - must be a bigint > 0n
 });
 ```
 
@@ -245,7 +249,7 @@ const portfolio = await rain.getPortfolioValue({
 // totalPositionValue }
 ```
 
-Note on `dynamicPayout`: This returns a per-option array. For example, [0, 804164316, 0, 0] means there is a ~804 USDT payout if option 1 wins.
+Note on `dynamicPayout`: This returns a per-option array. For example, \[0, 804164316, 0, 0\] means there is a ~804 USDT payout if option 1 wins.
 
 ---
 
