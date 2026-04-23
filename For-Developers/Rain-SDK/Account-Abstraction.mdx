@@ -12,7 +12,7 @@ To execute trades without requiring users to hold native ETH for gas, you use th
 To get started, you initialize the RainAA class with your standard viem wallet client and your Alchemy credentials.
 
 ```typescript
-import { RainAA } from '@rainprotocolsdk/sdk';
+import { RainAA } from '@buidlrrr/rain-sdk';
 import { arbitrum } from 'viem/chains';
 
 const rainAA = new RainAA({
@@ -43,7 +43,7 @@ const rawTx = rain.buildBuyOptionRawTx({ ... });
 const txHash = await rainAA.sendTransaction(rawTx);
 ```
 
-## Flow: Rain + RainAA Together
+## Flow: Rain \+ RainAA Together
 
 To execute a transaction, the workflow requires using both classes together. You use the stateless Rain class to define what to do, and the stateful RainAA class to handle how it is executed.
 
@@ -69,3 +69,4 @@ rainAA.client; // Underlying AA client (throws if not connected)
 
 // Disconnect
 rainAA.disconnect();
+```

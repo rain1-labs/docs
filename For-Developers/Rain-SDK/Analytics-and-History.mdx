@@ -14,7 +14,7 @@ Unlike standard market queries that read directly from the blockchain or the Rai
 To use any of the history or analytics methods, you must provide a `subgraphUrl` when initializing your Rain client. If this configuration is missing, the SDK will throw an error when you try to call these methods.
 
 ```typescript
-import { Rain } from '@rainprotocolsdk/sdk';
+import { Rain } from '@buidlrrr/rain-sdk';
 
 // Analytics require the Subgraph URL to be configured
 const rain = new Rain({
@@ -86,8 +86,8 @@ const details = await rain.getTransactionDetails({ txHash: '0x...' });
 
 You can also pull broader lists of activity using these methods:
 
-* `getTransactions({ address: '0x...', first: 20 })`: Fetch wallet transaction history.
-* `getMarketTransactions({ marketAddress: '0x...', first: 50 })`: Get all recent transactions for a specific market.
-* `getTradeHistory({ address: '0x...', marketAddress: '0x...' })`: Get a specific user's entire trade history.
+- `getTransactions({ address: '0x...', first: 20 })`: Fetch wallet transaction history.
+- `getMarketTransactions({ marketAddress: '0x...', first: 50 })`: Get all recent transactions for a specific market.
+- `getTradeHistory({ address: '0x...', marketAddress: '0x...' })`: Get a specific user's entire trade history.
 
 Using these methods, you can build a "Recent Activity" feed for your market pages, showing new buys and sells as they settle on-chain.

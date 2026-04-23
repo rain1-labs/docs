@@ -5,7 +5,7 @@ description: "Supply funds to prediction markets and earn fees from trading volu
 
 Every market on Rain needs liquidity to function. Because trades execute against an Automated Market Maker (AMM), the pool requires an initial supply of funds to price shares and settle outcomes.
 
-When you create a market, you have to provide at least $10 in initial liquidity. Once a market is live, anyone can step in and add more funds to the pool. By building liquidity features into your application, you give your users a way to participate and earn a yield without having to pick a winning side.
+When you create a market, you have to provide at least \$10 in initial liquidity. Once a market is live, anyone can step in and add more funds to the pool. By building liquidity features into your application, you give your users a way to participate and earn a yield without having to pick a winning side.
 
 ## How LPs Earn Fees
 
@@ -17,10 +17,10 @@ For applications built on the RNG Layer, like Risk Markets, liquidity providers 
 
 ## Adding Liquidity
 
-To let users fund a market, you build a transaction using the `buildAddLiquidityTx` method. The user specifies the market and the amount of stablecoins or $RAIN they want to supply.
+To let users fund a market, you build a transaction using the `buildAddLiquidityTx` method. The user specifies the market and the amount of stablecoins or \$RAIN they want to supply.
 
 ```typescript
-import { Rain } from '@rainprotocolsdk/sdk';
+import { Rain } from '@buidlrrr/rain-sdk';
 
 const rain = new Rain({ environment: 'production' });
 
