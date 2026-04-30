@@ -1,16 +1,15 @@
 ---
 title: "Installation & Initialization"
-description: "Set up the RNG Layer SDK in your project and connect to the correct Arbitrum environment."
+description: "Set up the Entropy Layer SDK in your project and connect to the correct Arbitrum environment."
 ---
 
-Get the RNG Layer SDK running in your project and connect to the right environment. The RNG Layer SDK is a lightweight, standalone package separate from the core Rain SDK. It is specifically designed to handle all interactions with the limited shared liquidity pool and token allowances on Arbitrum.
+Get the Entropy Layer SDK running in your project and connect to the right environment. The Entropy Layer SDK is a lightweight, standalone package separate from the core Rain SDK. It is specifically designed to handle all interactions with the limited shared liquidity pool and token allowances on Arbitrum.
 
 <CodeGroup>
 
 ```bash npm
 npm install rng-layer-sdk
 ```
-
 
 ```bash yarn
 yarn add rng-layer-sdk
@@ -38,8 +37,8 @@ const allowance = new Allowance({ environment: "production" });
 
 The environment you choose automatically routes your SDK calls to the correct smart contracts on the Arbitrum network.
 
-| Value         | Description                      |
-| ------------- | -------------------------------- |
-| `development` | Dev contracts on Arbitrum        |
-| `staging`     | Staging contracts on Arbitrum    |
-| `production`  | Production contracts on Arbitrum |
+| Value | Description |
+| --- | --- |
+| `development` | Dev contracts on Arbitrum |
+| `staging` | Staging contracts on Arbitrum |
+| `production` | Production contracts on Arbitrum |

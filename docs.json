@@ -132,7 +132,8 @@
               "For-Developers/Rain-SDK/Analytics-and-History",
               "For-Developers/Rain-SDK/Environments-and-Configuration",
               "For-Developers/Rain-SDK/API-Reference",
-              "For-Developers/Rain-SDK/Full-Method-Reference"
+              "For-Developers/Rain-SDK/Full-Method-Reference",
+              "For-Developers/Rain-SDK/Protocol-Fees"
             ]
           },
           {
@@ -145,15 +146,16 @@
             ]
           },
           {
-            "group": "RNG Layer",
+            "group": "Entropy Layer",
             "pages": [
-              "For-Developers/RNG-Layer/Introduction-to-the-RNG-Layer",
-              "For-Developers/RNG-Layer/Installation-Initialization",
-              "For-Developers/RNG-Layer/Liquidity-class",
-              "For-Developers/RNG-Layer/Allowance-class",
-              "For-Developers/RNG-Layer/Recommended-Usage-Pattern",
-              "For-Developers/RNG-Layer/Local-Development-Setup",
-              "For-Developers/RNG-Layer/Versioning-Policy"
+              "For-Developers/Entropy-Layer/Introduction-to-the-RNG-Layer",
+              "For-Developers/Entropy-Layer/Installation-Initialization",
+              "For-Developers/Entropy-Layer/Liquidity-class",
+              "For-Developers/Entropy-Layer/Allowance-class",
+              "For-Developers/Entropy-Layer/Recommended-Usage-Pattern",
+              "For-Developers/Entropy-Layer/Local-Development-Setup",
+              "For-Developers/Entropy-Layer/Versioning-Policy",
+              "For-Developers/Entropy-Layer/Fee-Structure"
             ]
           }
         ]

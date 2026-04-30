@@ -3,7 +3,7 @@ title: "Allowance Class"
 description: "A utility class to verify USDT token permissions before interacting with the limited shared liquidity pool."
 ---
 
-Before a user can deposit funds into the RNG Layer's liquidity pool, their smart account must grant permission to the protocol's smart contracts to move their USDT. The `Allowance` class provides dedicated read methods to verify these permissions. By checking allowances before attempting a deposit, you can build smoother user experiences. Prompting the user for an approval transaction only when it is strictly necessary helps you avoid failed transactions.
+Before a user can deposit funds into the Entropy Layer's liquidity pool, their smart account must grant permission to the protocol's smart contracts to move their USDT. The `Allowance` class provides dedicated read methods to verify these permissions. By checking allowances before attempting a deposit, you can build smoother user experiences. Prompting the user for an approval transaction only when it is strictly necessary helps you avoid failed transactions.
 
 ## Read Methods
 
@@ -21,9 +21,9 @@ checkAllowance(smartAccount: `0x${string}`): Promise<string>
 
 **Parameters**
 
-| Parameter      | Type          | Required | Description           |
-| -------------- | ------------- | -------- | --------------------- |
-| `smartAccount` | `0x${string}` | ✅        | Smart account address |
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `smartAccount` | `0x${string}` | ✅ | Smart account address |
 
 **Returns** `string` - Allowance amount converted from Wei (mwei / 6 decimals).
 
@@ -56,10 +56,10 @@ getAllowanceByAddress(
 
 **Parameters**
 
-| Parameter         | Type          | Required | Description                             |
-| ----------------- | ------------- | -------- | --------------------------------------- |
-| `smartAccount`    | `0x${string}` | ✅        | Smart account address                   |
-| `contractAddress` | `0x${string}` | ✅        | Contract address to check allowance for |
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `smartAccount` | `0x${string}` | ✅ | Smart account address |
+| `contractAddress` | `0x${string}` | ✅ | Contract address to check allowance for |
 
 **Returns** `bigint` - Raw allowance value (not converted).
 

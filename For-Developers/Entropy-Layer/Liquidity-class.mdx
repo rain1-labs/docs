@@ -1,9 +1,9 @@
 ---
 title: "Liquidity Class"
-description: "The central hub for interacting with the RNG Layer's limited shared liquidity pool."
+description: "The central hub for interacting with the Entropy Layer's limited shared liquidity pool."
 ---
 
-In the RNG Layer, all randomly pre-generated scenarios draw from a single, unified source of funds. The `Liquidity` class is your primary interface for interacting with this limited shared liquidity pool on the Arbitrum network.
+In the Entropy Layer, all randomly pre-generated scenarios draw from a single, unified source of funds. The `Liquidity` class is your primary interface for interacting with this limited shared liquidity pool on the Arbitrum network.
 
 Whether you are building a dashboard to show real-time platform statistics, or a fully-featured interface for Liquidity Providers (LPs) to manage their deposits, this class provides all the necessary methods to interact with the underlying smart contracts safely and efficiently.
 
@@ -20,7 +20,7 @@ By separating data fetching from transaction building, the SDK ensures that your
 
 ## Read Methods
 
-Query the state of the limited shared liquidity pool and check user balances. The `Liquidity` class provides a set of read-only methods to fetch data directly from the RNG Layer's smart contracts. Because these methods only read data, they do not require transaction signing or gas fees, making them perfect for populating your application's frontend.
+Query the state of the limited shared liquidity pool and check user balances. The `Liquidity` class provides a set of read-only methods to fetch data directly from the Entropy Layer's smart contracts. Because these methods only read data, they do not require transaction signing or gas fees, making them perfect for populating your application's frontend.
 
 ### Pool State Methods
 
@@ -128,9 +128,9 @@ CurrentLiquidityYouProvide(
 
 **Parameters**
 
-| Parameter         | Type          | Required | Description                     |
-| ----------------- | ------------- | -------- | ------------------------------- |
-| `internalAccount` | `0x${string}` | ✅        | User's internal account address |
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `internalAccount` | `0x${string}` | ✅ | User's internal account address |
 
 **Returns** `string` - User's liquidity balance converted from gwei (9 decimals).
 
@@ -159,9 +159,9 @@ UserReserved(
 
 **Parameters**
 
-| Parameter         | Type          | Required | Description                     |
-| ----------------- | ------------- | -------- | ------------------------------- |
-| `internalAccount` | `0x${string}` | ✅        | User's internal account address |
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `internalAccount` | `0x${string}` | ✅ | User's internal account address |
 
 **Returns** `bigint` - Raw reserved amount (not converted).
 
@@ -190,9 +190,9 @@ UserPrviewUnreserve(
 
 **Parameters**
 
-| Parameter         | Type          | Required | Description                     |
-| ----------------- | ------------- | -------- | ------------------------------- |
-| `internalAccount` | `0x${string}` | ✅        | User's internal account address |
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `internalAccount` | `0x${string}` | ✅ | User's internal account address |
 
 **Returns** `object` - Raw unreserve preview data returned from the contract.
 
@@ -237,10 +237,10 @@ addLiquidityMethod(params: {
 
 **Parameters**
 
-| Parameter      | Type     | Required | Description               |
-| -------------- | -------- | -------- | ------------------------- |
-| `amount`       | `string` | ✅        | Amount of USDT to deposit |
-| `smartAccount` | `string` | ✅        | Smart account address     |
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `amount` | `string` | ✅ | Amount of USDT to deposit |
+| `smartAccount` | `string` | ✅ | Smart account address |
 
 **Example**
 
@@ -272,11 +272,11 @@ removeLiquidity(params: {
 
 **Parameters**
 
-| Parameter      | Type          | Required | Description                     |
-| -------------- | ------------- | -------- | ------------------------------- |
-| `address`      | `0x${string}` | ✅        | Liquidity provider address      |
-| `amount`       | `string`      | ✅        | Amount of liquidity to withdraw |
-| `smartAccount` | `0x${string}` | ✅        | Smart account address           |
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `address` | `0x${string}` | ✅ | Liquidity provider address |
+| `amount` | `string` | ✅ | Amount of liquidity to withdraw |
+| `smartAccount` | `0x${string}` | ✅ | Smart account address |
 
 **Example**
 
@@ -307,9 +307,9 @@ addUnReserveMethod(params: {
 
 **Parameters**
 
-| Parameter | Type          | Required | Description    |
-| --------- | ------------- | -------- | -------------- |
-| `address` | `0x${string}` | ✅        | User's address |
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `address` | `0x${string}` | ✅ | User's address |
 
 **Example**
 
